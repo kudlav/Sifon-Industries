@@ -1,0 +1,43 @@
+﻿=== Termíny ===
+
+1. Fáze Příprava
+- specifikace funkcí kalkulačky (do 21.3.2017 Vladan Kudláč)
+- vytvoření GUI v JavaFX (do 21.3.2017 Marek Musil)
+- vytvoření testů pro matematickou knihovnu (do 26.3.2017 Vladan Kudláč, Adam Kuba, Dominik Kosík)
+
+2. Fáze Implementace knihovny
+- implementace / a funkce navíc (modulo) (do 29.3.2017 Dominik Kosík)
+- implementace * a odmocnina (do 29.3.2017 Adam Kuba)
+- implementace - a umocňování (do 29.3.2017 Vladan Kudláč)
+- implementace + a faktorial  (do 29.3.2017 Marek Musil)
+
+3. Fáze Použití knihovny
+- napojení knihovny na GUI (do 5.4.2017 Vladan Kudláč, Marek Musil)
+- profiling (do 5.4.2017 Adam Kuba, Dominik Kosík)
+
+4. Fáze Dokumentace
+- vytvoření doxyfile (do 8.4.2017 všichni členové týmu)
+- generování dokumentace (do 11.4.2017 všichni členové týmu)
+
+5. fáze Předávání a instalace
+- vytváření uživatelské příručky (do 19.4.2017 všichni členové týmu společně)
+- vytváření instalačních a odinstalačních balíčků (do 19.4.2017)
+
+
+=== Komunikační kanály ===
+
+# Facebook Messenger - vytvořena společná konverzace Sifon Industries
+Slouží pro obecnou komunikaci (domlouvání schůzek), pro naléhavé věci a záležitosti, které není nutné archivovat (žádost o reakci na Githubu či o jinou akci). Pro diskuzi ke konkrétním částem projektu jsou určeny Issues na Github.com. Nutné kontrolovat alespoň 1x denně.
+
+# Github Projects - zde je umístěn plán projektu
+Jednotlivé sloupce představují fáze projektu, položky poté konkrétní problémy projektu. Každá položka bude Issues, u které budou uvedeny podrobnosti. Zde se bude vést diskuze k danému úkolu. Každý uzavřený úkol bude obsahovat v prvním komentáři pod vodorovnou čarou shrnutí. Je nutné mít zapnutá emailová upozornění, které se budou také min. 1x denně kontrolovat.
+
+# Skype - pouze videokonference (může nahradit schůzku). Chat se bude používat pouze během videokonference, jindy ne.
+
+# Telefon - na Github Wiki jsou telefonní čísla členů. Slouží pro neodkladnou komunikaci. Mohou být používány pro upozornění pomocí SMS. Volat pouze v nouzi.
+
+
+=== Systém pro správu verzí ===
+# verzovací systém: git >=2.11
+# hosting: https://github.com/kudlav/Sifon-Industries/
+# repozitář je soukromý, vyučující má přístup do repozitáře pomocí účtu: ivskontrola (ivs.kontrola@gmail.com)
