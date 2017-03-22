@@ -1,0 +1,21 @@
+/* CSS Document */
+.button {
+  -fx-font: Arial;
+  -fx-text-fill: #e1f5fe;
+  -fx-font-size: 24px;
+  -fx-background-color: #03A9F4;
+  -fx-padding: 10px 20px 10px 20px;
+  -fx-text-decoration: none;
+  -fx-background-radius: 0;
+}
+
+.button:hover {
+  -fx-background-color: #4fc2f7;
+  -fx-text-decoration: none;
+}
+.textarea{
+  -fx-background-color: #0277BD;
+}
+.operations {
+  -fx-background-color: #4FC3F7;
+}
