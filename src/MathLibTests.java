@@ -131,4 +131,39 @@ public class MathLibTests {
 		assertEquals(-0.4f, MathLib.sub(-0.4f, 0f), 0.0001f);
 	}
 
+	@Test
+	public void facTest(){
+		assertEquals(24f, MathLib.fac(4), 0.0001f);
+		assertEquals(120f, MathLib.fac(5), 0.0001f);
+		
+		assertEquals(1f, MathLib.fac(0), 0.0001f);
+
+		assertEquals(1f, MathLib.fac(-4), 0.0001f);
+
+	}
+	
+	@Test
+	public void expTest(){
+		assertEquals(4f, MathLib.exp(2,2f), 0.0001f);
+		assertEquals(32f, MathLib.exp(5,2f), 0.0001f);
+		
+		
+		assertEquals(1f, MathLib.exp(0,2f), 0.0001f);
+		assertEquals(0f, MathLib.exp(2,0f), 0.0001f);
+		
+		assertEquals(0.25f, MathLib.exp(2,0.5f), 0.0001f);
+		assertEquals(0.125f, MathLib.exp(3,0.5f), 0.0001f);
+
+	}
+	
+	@Test
+	public void nRootTest(){
+		assertEquals(2f, MathLib.nRoot(2,4f), 0.0001f);
+		assertEquals(2f, MathLib.nRoot(5,32f), 0.0001f);
+		
+		assertEquals(0f, MathLib.nRoot(2,0f), 0.0001f);
+
+		assertEquals(0.93309299f, MathLib.nRoot(10,0.5f), 0.0001f);
+
+	}
 }
