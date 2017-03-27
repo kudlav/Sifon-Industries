@@ -7,7 +7,7 @@ public class MathLib {
 	}
 
 	public static double imul(double a, double b) {
-		return 0;
+		return a*b;
 	}
 
 	public  static double sub(double a, double b) {
