@@ -19,7 +19,19 @@ public class MathLib {
 	}
 
 	public  static double nRoot(int n, double a) {
-		return 0;
+		if(a<0){
+			return -1;
+		}
+		double p = 0.00000000001;
+		double prev=a;
+		double next=a/n;
+		
+		while(abs(prev-next)>p){
+			prev = next;
+			next = ((n-1.0)*prev+(a/Math.pow(prev,n-1)))/n;
+			
+		}
+		return next;
 	}
 
 	public  static double exp(int n, double a) {
@@ -34,4 +46,7 @@ public class MathLib {
 		return 0;
 	}
 
+	private static double abs(double a){
+		return (a<=0.0D) ? 0.0D - a :a;
+	}
 }
