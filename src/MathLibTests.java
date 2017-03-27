@@ -3,7 +3,7 @@ import org.junit.Test;
 
 /**
  * @author Rengyr
- *
+ * @author AdamKuba
  */
 public class MathLibTests {
 	
@@ -34,22 +34,22 @@ public class MathLibTests {
 		try {
 			MathLib.idiv(10f, 0f);
 			fail("Didn't throw zero divison exception!");
-		} catch (IllegalArgumentException e) {}
+		} catch (ArithmeticException e) {}
 		
 		try {
 			MathLib.idiv(-10f, 0f);
 			fail("Didn't throw zero divison exception!");
-		} catch (IllegalArgumentException e) {}
+		} catch (ArithmeticException e) {}
 		
 		try {
 			MathLib.idiv(0.3f, 0f);
 			fail("Didn't throw zero divison exception!");
-		} catch (IllegalArgumentException e) {}
+		} catch (ArithmeticException e) {}
 		
 		try {
 			MathLib.idiv(-0.3f, 0f);
 			fail("Didn't throw zero divison exception!");
-		} catch (IllegalArgumentException e) {}
+		} catch (ArithmeticException e) {}
 
 	}
 	
