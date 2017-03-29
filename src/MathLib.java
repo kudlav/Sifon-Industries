@@ -6,6 +6,12 @@ public class MathLib {
 		return 0;
 	}
 
+	/**
+	 * Multiplication.
+	 * @param a first number to multiplication
+	 * @param b second number to multiplication
+	 * @return result of multiplication
+	 * */
 	public static double imul(double a, double b) {
 		return a*b;
 	}
@@ -18,6 +24,12 @@ public class MathLib {
 		return 0;
 	}
 
+	/**
+	 * Nth root implemented by the formula from wikipedia.
+	 * @param n number of root
+	 * @param a root base
+	 * @return result of nth root
+	 * */
 	public  static double nRoot(int n, double a) {
 		if(a<0){
 			return -1;
@@ -28,7 +40,7 @@ public class MathLib {
 		
 		while(abs(prev-next)>p){
 			prev = next;
-			next = ((n-1.0)*prev+(a/Math.pow(prev,n-1)))/n;
+			next = ((n-1.0)*prev+(a/exp(n-1,prev)))/n;
 			
 		}
 		return next;
@@ -45,7 +57,12 @@ public class MathLib {
 	public  static int mod(int a, int b) {
 		return 0;
 	}
-
+	
+	/**
+	 * Absolute value.
+	 * @param a number
+	 * @return number which is always positive
+	 * */
 	private static double abs(double a){
 		return (a<=0.0D) ? 0.0D - a :a;
 	}
