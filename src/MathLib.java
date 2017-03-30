@@ -21,8 +21,14 @@ public class MathLib {
 		return a / b;
 	}
 
+	/**
+	 * Multiplication.
+	 * @param a first number to multiplication
+	 * @param b second number to multiplication
+	 * @return result of multiplication
+	 * */
 	public static double imul(double a, double b) {
-		return 0;
+		return a*b;
 	}
 
 	/**
@@ -43,8 +49,26 @@ public class MathLib {
 		return 0;
 	}
 
+	/**
+	 * Nth root implemented by the formula from wikipedia.
+	 * @param n number of root
+	 * @param a root base
+	 * @return result of nth root
+	 * */
 	public  static double nRoot(int n, double a) {
-		return 0;
+		if(a<0){
+			return -1;
+		}
+		double p = 0.00000000001;
+		double prev=a;
+		double next=a/n;
+		
+		while(abs(prev-next)>p){
+			prev = next;
+			next = ((n-1.0)*prev+(a/exp(n-1,prev)))/n;
+			
+		}
+		return next;
 	}
 
 
@@ -85,6 +109,14 @@ public class MathLib {
 	public  static int mod(int a, int b) {
 		return a % b;
 	}
+
+	/**
+	 * Absolute value.
+	 * @param a number
+	 * @return number which is always positive
+	 * */
+	private static double abs(double a){
+		return (a<=0.0D) ? 0.0D - a :a;
 
 	/**
 	 * Absolute value of integer.
