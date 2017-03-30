@@ -154,6 +154,9 @@ public class MathLibTests {
 		assertEquals(0.25f, MathLib.exp(2,0.5f), 0.0001f);
 		assertEquals(0.125f, MathLib.exp(3,0.5f), 0.0001f);
 
+		assertEquals(0.001f, MathLib.exp(-3,10f), 0.0001f);
+		assertEquals(-0.5f, MathLib.exp(-1,-2f), 0.0001f);
+
 	}
 	
 	@Test
