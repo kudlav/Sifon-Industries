@@ -44,9 +44,17 @@ public class MathLib {
 	public  static double sub(double a, double b) {
 		return a-b;
 	}
-
+		/**
+		* Addition
+		* 
+		* @param a First number
+		* @param b The number which is added to the first one
+		* @return a + b
+		* 
+		* @author mmusil
+		*/
 	public  static double add(double a, double b) {
-		return 0;
+		return a+b;
 	}
 
 	/**
@@ -93,8 +101,20 @@ public class MathLib {
 		return (n < 0) ? 1/result : result;
 	}
 
+		/**
+		* Factorial
+		* @param a Number from its factorial is counted
+		* @return factorial from a
+		* 
+		* @author mmusil
+		*/
 	public  static double fac(int a) {
-		return 0;
+			int f = a;
+			while (a>1){
+				f = f * (a-1);
+				a--;
+			}
+			return f;
 	}
 
 	/**
