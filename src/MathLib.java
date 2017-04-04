@@ -26,6 +26,7 @@ public class MathLib {
 	 * @param a first number to multiplication
 	 * @param b second number to multiplication
 	 * @return result of multiplication
+	 * @author AdamKuba
 	 * */
 	public static double imul(double a, double b) {
 		return a*b;
@@ -62,6 +63,7 @@ public class MathLib {
 	 * @param n number of root
 	 * @param a root base
 	 * @return result of nth root
+	 * @author AdamKuba
 	 * */
 	public  static double nRoot(int n, double a) {
 		if(a<0){
@@ -134,10 +136,10 @@ public class MathLib {
 	 * Absolute value.
 	 * @param a number
 	 * @return number which is always positive
-	 * */
+	 */
 	private static double abs(double a){
 		return (a<=0.0D) ? 0.0D - a :a;
-
+	}
 	/**
 	 * Absolute value of integer.
 	 *
