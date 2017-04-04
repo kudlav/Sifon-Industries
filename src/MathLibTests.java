@@ -138,7 +138,7 @@ public class MathLibTests {
 		
 		assertEquals(1f, MathLib.fac(0), 0.0001f);
 
-		assertEquals(1f, MathLib.fac(-4), 0.0001f);
+		assertEquals(-1f, MathLib.fac(-4), 0.0001f);
 
 	}
 	
