@@ -106,17 +106,25 @@ public class MathLib {
 		/**
 		* Factorial
 		* @param a Number from its factorial is counted
-		* @return factorial from a
-		* 
+		* @return factorial from a, -1 if a<0
+		* @pre factorial is not defined for numbers <0, a>=0
 		* @author mmusil
 		*/
 	public  static double fac(int a) {
+		if (a>0){
 			int f = a;
 			while (a>1){
 				f = f * (a-1);
 				a--;
 			}
 			return f;
+		}
+		if(a==0){
+			return 1;
+		}
+		else{
+			return -1;
+		}
 	}
 
 	/**
