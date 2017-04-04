@@ -1,8 +1,7 @@
 /* CSS Document */
 .button {
-  -fx-font: Arial;
+  -fx-font: 24px "Arial";
   -fx-text-fill: #e1f5fe;
-  -fx-font-size: 24px;
   -fx-background-color: #03A9F4;
   -fx-padding: 10px 20px 10px 20px;
   -fx-text-decoration: none;
