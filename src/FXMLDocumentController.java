@@ -14,73 +14,72 @@ import javafx.scene.control.Label;
 
 /**
  *
- * @author Moose
+ * @author mmusil
  */
 public class FXMLDocumentController implements Initializable {
-    
-    @FXML
-    private Label digit;
-    
-    @FXML
-    private void handleNumberButon(ActionEvent event) {
-        String text = ((Button)event.getSource()).getText();
-        System.out.print(text);
-        // TODO calling a newDigitHandler
-    }
+	
+	@FXML
+	private Label digit;
+	
+	@FXML
+	private void handleNumberButon(ActionEvent event) {
+		String text = ((Button)event.getSource()).getText();
+		System.out.print(text);
+		// TODO calling a newDigitHandler
+	}
 
-    @FXML
-    private void handleResultButton(ActionEvent event) {
-        // TODO
-    }
+	@FXML
+	private void handleResultButton(ActionEvent event) {
+		// TODO
+	}
 
-    @FXML
-    private void handlePlusButton(ActionEvent event) {
-        // TODO
-    }
+	@FXML
+	private void handlePlusButton(ActionEvent event) {
+		// TODO
+	}
 
-    @FXML
-    private void handleMinusButton(ActionEvent event) {
-        // TODO
-    }
+	@FXML
+	private void handleMinusButton(ActionEvent event) {
+		// TODO
+	}
 
-    @FXML
-    private void handleMulButton(ActionEvent event) {
-        // TODO
-    }
+	@FXML
+	private void handleMulButton(ActionEvent event) {
+		// TODO
+	}
 
-    @FXML
-    private void handleDivButton(ActionEvent event) {
-        // TODO
-    }
+	@FXML
+	private void handleDivButton(ActionEvent event) {
+		// TODO
+	}
 
-    @FXML
-    private void handleModButton(ActionEvent event) {
-        // TODO
-    }
+	@FXML
+	private void handleModButton(ActionEvent event) {
+		// TODO
+	}
 
-    @FXML
-    private void handleClearButton(ActionEvent event) {
-        // TODO
-    }
+	@FXML
+	private void handleClearButton(ActionEvent event) {
+		// TODO
+	}
 
-    @FXML
-    private void handleFacButton(ActionEvent event) {
-        // TODO
-    }
+	@FXML
+	private void handleFacButton(ActionEvent event) {
+		// TODO
+	}
 
-    @FXML
-    private void handleExpButton(ActionEvent event) {
-        // TODO
-    }
+	@FXML
+	private void handleExpButton(ActionEvent event) {
+		// TODO
+	}
 
-    @FXML
-    private void handleRootButton(ActionEvent event) {
-        // TODO
-    }
+	@FXML
+	private void handleRootButton(ActionEvent event) {
+		// TODO
+	}
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		// TODO
+	}
 }

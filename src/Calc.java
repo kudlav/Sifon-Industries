@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Vladan
+ * @author kudlav
  */
 public class Calc extends Application {
 
