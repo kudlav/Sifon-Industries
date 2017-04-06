@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -8,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane hgap="1.0" style="-fx-background-radius: 0; -fx-background-color: #B3E5FC;" styleClass="backgroud" stylesheets="@styles.css" vgap="2.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
+<GridPane hgap="1.0" style="-fx-background-radius: 0; -fx-background-color: #B3E5FC;" styleClass="backgroud" stylesheets="@styles.css" vgap="2.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
 	<columnConstraints>
 		<ColumnConstraints hgrow="SOMETIMES" minWidth="86.0" prefWidth="86.0" />
 		<ColumnConstraints hgrow="SOMETIMES" minWidth="86.0" prefWidth="86.0" />
@@ -16,6 +21,7 @@
 	<ColumnConstraints hgrow="SOMETIMES" minWidth="86.0" prefWidth="86.0" />
 	</columnConstraints>
 	<rowConstraints>
+		<RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
 		<RowConstraints minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
 		<RowConstraints minHeight="65.0" prefHeight="65.0" vgrow="SOMETIMES" />
 		<RowConstraints minHeight="65.0" prefHeight="65.0" vgrow="SOMETIMES" />
@@ -25,91 +31,99 @@
 	<RowConstraints minHeight="65.0" prefHeight="65.0" vgrow="SOMETIMES" />
 	</rowConstraints>
 	<children>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleResultButton" snapToPixel="false" styleClass="operations" text="=" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.rowSpan="2" />
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClearButton" style="-fx-background-radius: 0;" styleClass="operations" stylesheets="@styles.css" text="C" GridPane.columnSpan="2" GridPane.rowIndex="1">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleResultButton" snapToPixel="false" styleClass="operations" text="=" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.rowSpan="2" />
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClearButton" style="-fx-background-radius: 0;" styleClass="operations" stylesheets="@styles.css" text="C" GridPane.columnSpan="2" GridPane.rowIndex="2">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleModButton" style="-fx-font-size: 20;" styleClass="operations" text="Mod" GridPane.columnIndex="2" GridPane.rowIndex="1">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleModButton" style="-fx-font-size: 20;" styleClass="operations" text="Mod" GridPane.columnIndex="2" GridPane.rowIndex="2">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleDivButton" styleClass="operations" text="÷" GridPane.columnIndex="3" GridPane.rowIndex="1">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleDivButton" styleClass="operations" text="÷" GridPane.columnIndex="3" GridPane.rowIndex="2">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleFacButton" styleClass="operations" text="x!" GridPane.rowIndex="2">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleFacButton" styleClass="operations" text="x!" GridPane.rowIndex="3">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleExpButton" styleClass="operations" text="x^y" GridPane.columnIndex="1" GridPane.rowIndex="2">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleExpButton" styleClass="operations" text="x^y" GridPane.columnIndex="1" GridPane.rowIndex="3">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleRootButton" styleClass="operations" text="√" GridPane.columnIndex="2" GridPane.rowIndex="2">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleRootButton" styleClass="operations" text="√" GridPane.columnIndex="2" GridPane.rowIndex="3">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleMulButton" styleClass="operations" text="×" GridPane.columnIndex="3" GridPane.rowIndex="2">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleMulButton" styleClass="operations" text="×" GridPane.columnIndex="3" GridPane.rowIndex="3">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="7" GridPane.rowIndex="3">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="7" GridPane.rowIndex="4">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="8" GridPane.columnIndex="1" GridPane.rowIndex="3">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="8" GridPane.columnIndex="1" GridPane.rowIndex="4">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="9" GridPane.columnIndex="2" GridPane.rowIndex="3">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="9" GridPane.columnIndex="2" GridPane.rowIndex="4">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleMinusButton" styleClass="operations" text="-" GridPane.columnIndex="3" GridPane.rowIndex="3">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleMinusButton" styleClass="operations" text="-" GridPane.columnIndex="3" GridPane.rowIndex="4">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="4" GridPane.rowIndex="4">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="4" GridPane.rowIndex="5">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="1" GridPane.rowIndex="5">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="1" GridPane.rowIndex="6">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="0" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.rowSpan="2147483647">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="0" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.rowSpan="2147483647">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="5" GridPane.columnIndex="1" GridPane.rowIndex="4">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="5" GridPane.columnIndex="1" GridPane.rowIndex="5">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" style="-fx-background-radius: 0;" text="2" GridPane.columnIndex="1" GridPane.rowIndex="5">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" style="-fx-background-radius: 0;" text="2" GridPane.columnIndex="1" GridPane.rowIndex="6">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="6" GridPane.columnIndex="2" GridPane.rowIndex="4">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="6" GridPane.columnIndex="2" GridPane.rowIndex="5">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="3" GridPane.columnIndex="2" GridPane.rowIndex="5">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNumberButon" text="3" GridPane.columnIndex="2" GridPane.rowIndex="6">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handlePlusButton" styleClass="operations" text="+" GridPane.columnIndex="3" GridPane.rowIndex="4">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handlePlusButton" styleClass="operations" text="+" GridPane.columnIndex="3" GridPane.rowIndex="5">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button fx:id="buttonPoint" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="," GridPane.columnIndex="2" GridPane.rowIndex="6">
+		<Button fx:id="buttonPoint" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="," GridPane.columnIndex="2" GridPane.rowIndex="7">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Label fx:id="display" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="textarea" text="0" textAlignment="CENTER" GridPane.columnSpan="4">
+		<Label fx:id="display" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="textarea" text="1" textAlignment="CENTER" GridPane.columnSpan="4" GridPane.rowIndex="1">
 		<font>
-			<Font size="34.0" />
+			<Font size="42.0" />
 		</font>
+		</Label>
+		<Label fx:id="display1" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="textarea" text="1+1" textAlignment="CENTER" textFill="#515151" GridPane.columnSpan="4">
+		<font>
+			<Font size="22.0" />
+		</font>
+		<GridPane.margin>
+			<Insets bottom="-2.0" />
+		</GridPane.margin>
 		</Label>
 	</children>
 	<opaqueInsets>

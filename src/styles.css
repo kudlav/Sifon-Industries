@@ -8,9 +8,16 @@
 	-fx-background-radius: 0;
 }
 
-.button:hover {
-	-fx-background-color: #4fc2f7;
+.button:hover:armed {
+	-fx-background-color: #01579B;
 	-fx-text-decoration: none;
+}
+.button:hover {
+	-fx-background-color: #039BE5;
+}
+.button:disabled {
+	-fx-background-color: #B3E5FC;
+	-fx-text-fill: #01579B;
 }
 .textarea{
 	-fx-background-color: #0277BD;
