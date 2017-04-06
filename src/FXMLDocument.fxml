@@ -46,7 +46,7 @@
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="operations" text="√" GridPane.columnIndex="2" GridPane.rowIndex="2">
+		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleRootButton" styleClass="operations" text="√" GridPane.columnIndex="2" GridPane.rowIndex="2">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
@@ -102,11 +102,11 @@
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="," GridPane.columnIndex="2" GridPane.rowIndex="6">
+		<Button fx:id="buttonPoint" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="," GridPane.columnIndex="2" GridPane.rowIndex="6">
 		<font>
 			<Font size="24.0" />
 		</font></Button>
-		<Label fx:id="digit" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="textarea" text="0" textAlignment="CENTER" GridPane.columnSpan="4">
+		<Label fx:id="display" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="textarea" text="0" textAlignment="CENTER" GridPane.columnSpan="4">
 		<font>
 			<Font size="34.0" />
 		</font>

@@ -17,69 +17,157 @@ import javafx.scene.control.Label;
  * @author mmusil
  */
 public class FXMLDocumentController implements Initializable {
+
+	@FXML
+	private Label display;
 	
 	@FXML
-	private Label digit;
+	private Button buttonPoint;
+
+
+	private int memory;
+	private String operation;
+	private boolean issetMemory;
 	
+	public FXMLDocumentController(){
+		memory = 0;
+		operation = "";
+		issetMemory = false;
+	}
+
 	@FXML
 	private void handleNumberButon(ActionEvent event) {
-		String text = ((Button)event.getSource()).getText();
-		System.out.print(text);
-		// TODO calling a newDigitHandler
+		String textPressed = ((Button)event.getSource()).getText();
+		String oldNumber = display.getText();
+
+		// Operation was selected, the second number is going to be inserted
+		if(!getOperation().equals("") && !issetMemory()) {
+			setMemory(Integer.parseInt(oldNumber));
+			oldNumber = "";
+		}
+		// First digit, replace default zero with number
+		else if(oldNumber.equals("0")) {
+			oldNumber = "";
+		}
+
+		display.setText(oldNumber+textPressed);
 	}
 
 	@FXML
 	private void handleResultButton(ActionEvent event) {
-		// TODO
+		// TODO result
 	}
 
 	@FXML
 	private void handlePlusButton(ActionEvent event) {
-		// TODO
+		setOperation("+");
+		buttonPoint.setDisable(false);
+		if (issetMemory() && !operation.equals("")) {
+			// TODO result
+		}
 	}
 
 	@FXML
 	private void handleMinusButton(ActionEvent event) {
-		// TODO
+		setOperation("-");
+		buttonPoint.setDisable(false);
+		if (issetMemory() && !operation.equals("")) {
+			// TODO result
+		}
 	}
 
 	@FXML
 	private void handleMulButton(ActionEvent event) {
-		// TODO
+		setOperation("*");
+		buttonPoint.setDisable(false);
+		if (issetMemory() && !operation.equals("")) {
+			// TODO result
+		}
 	}
 
 	@FXML
 	private void handleDivButton(ActionEvent event) {
-		// TODO
+		setOperation("/");
+		buttonPoint.setDisable(false);
+		if (issetMemory() && !operation.equals("")) {
+			// TODO result !!division by zero
+		}
 	}
 
 	@FXML
 	private void handleModButton(ActionEvent event) {
-		// TODO
-	}
-
-	@FXML
-	private void handleClearButton(ActionEvent event) {
-		// TODO
+		setOperation("%");
+		buttonPoint.setDisable(false);
+		if (issetMemory() && !operation.equals("")) {
+			// TODO result
+		}
 	}
 
 	@FXML
 	private void handleFacButton(ActionEvent event) {
-		// TODO
+		setOperation("!");
+		// TODO result
 	}
 
 	@FXML
 	private void handleExpButton(ActionEvent event) {
-		// TODO
+		setOperation("exp");
+		buttonPoint.setDisable(true);
+		if (issetMemory() && !operation.equals("")) {
+			// TODO result
+		}
 	}
 
 	@FXML
 	private void handleRootButton(ActionEvent event) {
+		setOperation("root");
+		buttonPoint.setDisable(true);
+		if (issetMemory() && !operation.equals("")) {
+			// TODO result
+		}
+	}
+
+	@FXML
+	private void handleClearButton(ActionEvent event) {
+		clearMemory();
+		setOperation("");
+		display.setText("0");
+		// TODO enable all keys (button point, operations,...)
+	}
+
+	@FXML
+	private void handlePointButton(ActionEvent event) {
 		// TODO
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// TODO
+
+	}
+
+	public void setMemory(int value){
+		this.memory = value;
+		this.issetMemory = true;
+	}
+
+	public int getMemory(){
+		return this.memory;
+	}
+
+	public void clearMemory(){
+		this.memory = 0;
+		this.issetMemory = false;
+	}
+
+	public boolean issetMemory(){
+		return this.issetMemory;
+	}
+
+	public void setOperation(String value){
+		this.operation = value;
+	}
+
+	public String getOperation(){
+		return this.operation;
 	}
 }
