@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,6 +9,7 @@ import javafx.scene.control.Label;
 /**
  *
  * @author mmusil
+ * @author kudlav
  */
 public class FXMLDocumentController implements Initializable {
 
@@ -62,6 +57,7 @@ public class FXMLDocumentController implements Initializable {
 	private void handlePlusButton(ActionEvent event) {
 		setOperation("+");
 		buttonPoint.setDisable(false);
+		// Operation selected instead of "=", set result of previous operation as first number
 		if (issetMemory() && !operation.equals("")) {
 			// TODO result
 		}
@@ -71,6 +67,7 @@ public class FXMLDocumentController implements Initializable {
 	private void handleMinusButton(ActionEvent event) {
 		setOperation("-");
 		buttonPoint.setDisable(false);
+		// Operation selected instead of "=", set result of previous operation as first number
 		if (issetMemory() && !operation.equals("")) {
 			// TODO result
 		}
@@ -80,6 +77,7 @@ public class FXMLDocumentController implements Initializable {
 	private void handleMulButton(ActionEvent event) {
 		setOperation("*");
 		buttonPoint.setDisable(false);
+		// Operation selected instead of "=", set result of previous operation as first number
 		if (issetMemory() && !operation.equals("")) {
 			// TODO result
 		}
@@ -89,6 +87,7 @@ public class FXMLDocumentController implements Initializable {
 	private void handleDivButton(ActionEvent event) {
 		setOperation("/");
 		buttonPoint.setDisable(false);
+		// Operation selected instead of "=", set result of previous operation as first number
 		if (issetMemory() && !operation.equals("")) {
 			// TODO result !!division by zero
 		}
@@ -98,6 +97,7 @@ public class FXMLDocumentController implements Initializable {
 	private void handleModButton(ActionEvent event) {
 		setOperation("%");
 		buttonPoint.setDisable(false);
+		// Operation selected instead of "=", set result of previous operation as first number
 		if (issetMemory() && !operation.equals("")) {
 			// TODO result
 		}
@@ -113,6 +113,7 @@ public class FXMLDocumentController implements Initializable {
 	private void handleExpButton(ActionEvent event) {
 		setOperation("exp");
 		buttonPoint.setDisable(true);
+		// Operation selected instead of "=", set result of previous operation as first number
 		if (issetMemory() && !operation.equals("")) {
 			// TODO result
 		}
@@ -122,6 +123,7 @@ public class FXMLDocumentController implements Initializable {
 	private void handleRootButton(ActionEvent event) {
 		setOperation("root");
 		buttonPoint.setDisable(true);
+		// Operation selected instead of "=", set result of previous operation as first number
 		if (issetMemory() && !operation.equals("")) {
 			// TODO result
 		}
@@ -145,28 +147,63 @@ public class FXMLDocumentController implements Initializable {
 
 	}
 
+	/**
+	 * Save int to memory. IssetMemory is set to true.
+	 *
+	 * @author kudlav
+	 * @param value integer to store
+	 */
 	public void setMemory(int value){
 		this.memory = value;
 		this.issetMemory = true;
 	}
 
+	/**
+	 * Get value stored in memory.
+	 *
+	 * @author kudlav
+	 * @return value stored in memory
+	 */
 	public int getMemory(){
 		return this.memory;
 	}
 
+	/**
+	 * Set zero value to memory. IssetMemory is set to false.
+	 *
+	 * @author kudlav
+	 */
 	public void clearMemory(){
 		this.memory = 0;
 		this.issetMemory = false;
 	}
 
+	/**
+	 * Check if something is saved in memory.
+	 *
+	 * @author kudlav
+	 * @return true if number was stored, false if nothing was save or after reset
+	 */
 	public boolean issetMemory(){
 		return this.issetMemory;
 	}
 
+	/**
+	 * Set operation selected by user.
+	 *
+	 * @author kudlav
+	 * @param value string describing operation
+	 */
 	public void setOperation(String value){
 		this.operation = value;
 	}
 
+	/**
+	 * Get operation seleted by user.
+	 *
+	 * @author kudlav
+	 * @return string of operation or empty string if nothing was selected
+	 */
 	public String getOperation(){
 		return this.operation;
 	}
