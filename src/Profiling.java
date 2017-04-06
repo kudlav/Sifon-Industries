@@ -21,7 +21,7 @@ public class Profiling {
 		
 		file = readFileName();
 		readNumbers(file, numbers);
-		
+		System.out.println(deviation(numbers));
 		profEnd(0, true);
 	}
 
@@ -102,5 +102,41 @@ public class Profiling {
 	private void profEnd(int err){
 		profEnd(err, false);
 	}
+	/**
+	 * Calculate the arithmetic mean of list.
+	 * 
+	 * @param num list of numbers
+	 * @return arithmetic mean
+	 * 
+	 * @author AdamKuba
+	 */
+	private double arithmeticMean(ArrayList<Double> num){
+		double sum = 0;
+		for (int i = 0; i < num.size(); i++) {
+			sum=MathLib.add(sum, num.get(i));
+		}
+		return MathLib.idiv(sum, num.size());
+		
+	}
 	
+	/**
+	 * Calculate the standard deviation of list using the formula of https://en.wikipedia.org/wiki/Standard_deviation.  
+	 * 
+	 * @param num list of numbers
+	 * @return standard deviation
+	 * 
+	 * @author AdamKuba
+	 */
+	private double deviation(ArrayList<Double> num){
+		double sum = 0;
+		for (int i = 0; i < num.size(); i++) {
+			sum=MathLib.add(sum, MathLib.imul(num.get(i), num.get(i)));
+		}
+		double mean = arithmeticMean(num);
+		double foo = MathLib.imul(num.size(), MathLib.imul(mean, mean));
+		double bar = MathLib.sub(sum, foo);
+		double foobar = MathLib.idiv(bar, num.size()-1);
+		return MathLib.nRoot(2, foobar);
+		
+	}
 }
