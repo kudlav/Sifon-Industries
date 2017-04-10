@@ -2,7 +2,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Profiling {
@@ -10,6 +12,7 @@ public class Profiling {
 	Scanner in = null;
 
 	public static void main(String[] args) {
+		generateFile("test",1000);
 		new Profiling();
 	}
 	
@@ -18,7 +21,6 @@ public class Profiling {
 		
 		File file;
 		ArrayList<Double> numbers = new ArrayList<Double>();
-		
 		file = readFileName();
 		readNumbers(file, numbers);
 		System.out.println(deviation(numbers));
@@ -137,6 +139,29 @@ public class Profiling {
 		double bar = MathLib.sub(sum, foo);
 		double foobar = MathLib.idiv(bar, num.size()-1);
 		return MathLib.nRoot(2, foobar);
+		
+	}
+	
+	
+	/**
+	 * Creates file with numbers. Numbers are random from interval (-5000,5000).
+	 * 
+	 * @param fileName name of file
+	 * @param count number of numbers in file
+	 * 
+	 * @author AdamKuba
+	 */
+	private static void generateFile(String fileName, int count){
+		try{
+		    PrintWriter writer = new PrintWriter(fileName);
+		    Random rn = new Random();
+		    for (int i = 0; i < count; i++) {
+		    	writer.println(rn.nextInt(10000)-5000);	
+			}
+		    writer.close();
+		} catch (IOException e) {
+		   // do something
+		}
 		
 	}
 }
