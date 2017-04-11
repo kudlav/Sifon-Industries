@@ -12,7 +12,7 @@ public class Profiling {
 	Scanner in = null;
 
 	public static void main(String[] args) {
-		generateFile("test",1000);
+		generateFile("test",100);
 		new Profiling();
 	}
 	
@@ -23,7 +23,9 @@ public class Profiling {
 		ArrayList<Double> numbers = new ArrayList<Double>();
 		file = readFileName();
 		readNumbers(file, numbers);
-		System.out.println(deviation(numbers));
+		for (int i = 0; i < 1000; i++) {
+			deviation(numbers);		//calculate deviation multiple times to get more precise results with profiling
+		}
 		profEnd(0, true);
 	}
 
@@ -160,7 +162,7 @@ public class Profiling {
 			}
 		    writer.close();
 		} catch (IOException e) {
-		   // do something
+
 		}
 		
 	}
