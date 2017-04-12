@@ -15,14 +15,45 @@ public class FXMLDocumentController implements Initializable {
 
 	@FXML
 	private Label display;
+
+	@FXML
+	private Label display1;
 	
 	@FXML
 	private Button buttonPoint;
 
+	@FXML
+	private Button mod;
 
-	private int memory;
+	@FXML
+	private Button idiv;
+
+	@FXML
+	private Button imul;
+
+	@FXML
+	private Button nroot;
+
+	@FXML
+	private Button exp;
+
+	@FXML
+	private Button fac;
+
+	@FXML
+	private Button sub;
+
+	@FXML
+	private Button add;
+
+	@FXML
+	private Button rslt;
+
+
+	private double memory;
 	private String operation;
 	private boolean issetMemory;
+	private int error;
 	
 	public FXMLDocumentController(){
 		memory = 0;
@@ -31,14 +62,24 @@ public class FXMLDocumentController implements Initializable {
 	}
 
 	@FXML
-	private void handleNumberButon(ActionEvent event) {
+	private void handleNumberButton(ActionEvent event) {
 		String textPressed = ((Button)event.getSource()).getText();
 		String oldNumber = display.getText();
 
+		if(this.error == 1){
+			oldNumber = "";
+			this.issetMemory = false;
+			this.operation="";
+			enableButtons();
+			this.error = 0;
+
+		}
+
 		// Operation was selected, the second number is going to be inserted
 		if(!getOperation().equals("") && !issetMemory()) {
-			setMemory(Integer.parseInt(oldNumber));
+			setMemory(Double.parseDouble(oldNumber));
 			oldNumber = "";
+			setHistory();
 		}
 		// First digit, replace default zero with number
 		else if(oldNumber.equals("0")) {
@@ -50,7 +91,73 @@ public class FXMLDocumentController implements Initializable {
 
 	@FXML
 	private void handleResultButton(ActionEvent event) {
-		// TODO result
+		String OP = getOperation();
+		double result;
+		switch (OP){
+			case "+":  result = MathLib.add(getMemory(), Integer.parseInt(this.display.getText()));
+				setMemory(0);
+				this.issetMemory = false;
+				this.display.setText(String.valueOf(result));
+				break;
+			case "-":  result = MathLib.sub(getMemory(), Integer.parseInt(this.display.getText()));
+				setMemory(0);
+				this.issetMemory = false;
+				this.display.setText(String.valueOf(result));
+				break;
+			case "*":  result = MathLib.imul(getMemory(), Integer.parseInt(this.display.getText()));
+				setMemory(0);
+				this.issetMemory = false;
+				this.display.setText(String.valueOf(result));
+				break;
+			case "/":  try{
+				result = MathLib.idiv(getMemory(), Integer.parseInt(this.display.getText()));
+				setMemory(0);
+				this.issetMemory = false;
+				this.display.setText(String.valueOf(result));
+				}catch (ArithmeticException AE){
+					this.display.setText(AE.getMessage());
+				this.error = 1;
+				dissableButtons();
+				}
+				break;
+			case "%":  result = MathLib.mod((int)getMemory(), Integer.parseInt(this.display.getText()));
+				setMemory(0);
+				this.issetMemory = false;
+				this.display.setText(String.valueOf(result));
+				break;
+			case "!":  result = MathLib.fac(Integer.parseInt(this.display.getText()));
+				if (result==-1){
+					this.display.setText(String.valueOf("Positive integers only"));
+					this.error = 1;
+					dissableButtons();
+				}
+				else{
+					this.display.setText(String.valueOf((int)result));
+					setMemory(0);
+					this.issetMemory = false;
+				}
+				break;
+			case "exp":  result = MathLib.exp(Integer.parseInt(this.display.getText()), getMemory());
+				setMemory(0);
+				this.issetMemory = false;
+				this.display.setText(String.valueOf(result));
+				break;
+			case "root":  result = MathLib.nRoot((int)getMemory(), Integer.parseInt(this.display.getText()));
+
+				if (result==-1){
+					this.display.setText(String.valueOf("Positive numbers only"));
+					this.error = 1;
+					dissableButtons();
+				}
+				else{
+					this.display.setText(String.valueOf(result));
+					setMemory(0);
+					this.issetMemory = false;
+				}
+				break;
+		}
+		display1.setText("");
+
 	}
 
 	@FXML
@@ -134,12 +241,16 @@ public class FXMLDocumentController implements Initializable {
 		clearMemory();
 		setOperation("");
 		display.setText("0");
+		display1.setText("");
 		// TODO enable all keys (button point, operations,...)
+		enableButtons();
 	}
 
 	@FXML
 	private void handlePointButton(ActionEvent event) {
 		// TODO
+		String text = display.getText()+".";
+		display.setText(text);
 	}
 
 	@Override
@@ -147,13 +258,40 @@ public class FXMLDocumentController implements Initializable {
 
 	}
 
+	public void dissableButtons(){
+		buttonPoint.setDisable(true);
+		mod.setDisable(true);
+		idiv.setDisable(true);
+		imul.setDisable(true);
+		nroot.setDisable(true);
+		exp.setDisable(true);
+		fac.setDisable(true);
+		sub.setDisable(true);
+		add.setDisable(true);
+		rslt.setDisable(true);
+	}
+
+	public void enableButtons(){
+		buttonPoint.setDisable(false);
+		mod.setDisable(false);
+		idiv.setDisable(false);
+		imul.setDisable(false);
+		nroot.setDisable(false);
+		exp.setDisable(false);
+		fac.setDisable(false);
+		sub.setDisable(false);
+		add.setDisable(false);
+		rslt.setDisable(false);
+	}
+
+
 	/**
 	 * Save int to memory. IssetMemory is set to true.
 	 *
 	 * @author kudlav
-	 * @param value integer to store
+	 * @param value double to store
 	 */
-	public void setMemory(int value){
+	public void setMemory(double value){
 		this.memory = value;
 		this.issetMemory = true;
 	}
@@ -164,7 +302,7 @@ public class FXMLDocumentController implements Initializable {
 	 * @author kudlav
 	 * @return value stored in memory
 	 */
-	public int getMemory(){
+	public double getMemory(){
 		return this.memory;
 	}
 
@@ -206,5 +344,10 @@ public class FXMLDocumentController implements Initializable {
 	 */
 	public String getOperation(){
 		return this.operation;
+	}
+
+	public void setHistory(){
+		display1.setText(String.valueOf(getMemory())+" "+ getOperation()+" ");
+		//display1.setText("history");
 	}
 }
