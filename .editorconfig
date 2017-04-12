@@ -1,0 +1,24 @@
+# EditorConfig helps developers define and maintain consistent
+# coding styles between different editors and IDEs
+# editorconfig.org
+
+# This is top-most EditorConfig file
+root = true
+
+# On every file:
+[*]
+
+# default charset
+charset = utf-8
+
+# Windows-style newlines
+end_of_line = crlf
+
+# newline ending
+insert_final_newline = true
+
+# tab indentation (no size specified)
+indent_style = tab
+
+# remove whitespace chars preceding newline
+trim_trailing_whitespace=true
