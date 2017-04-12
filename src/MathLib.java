@@ -1,8 +1,6 @@
 
 /**
  * Class with static mathematical methods.
- * 
- * @file MathLib.java
  */
 public class MathLib {
 
