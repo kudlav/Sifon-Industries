@@ -1,18 +1,21 @@
 
+/**
+ * Class with static mathematical methods.
+ * 
+ * @file MathLib.java
+ */
 public class MathLib {
 
-
 	/**
-	 * Returns division of double arguments.
+	 * Returns the division of double arguments.
 	 * <p>
 	 * Besides of zero division, special cases are returning values as specified in <a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.17.2"> Java SE Specifications</a> (IEEE 754).
 	 * 
-	 * @param a the dividend
-	 * @param b the divisor
-	 * @throws ArithmeticException if there is division by zero
-	 * @return the value dividend / divisor
-	 * 
 	 * @author Rengyr
+	 * @param a dividend
+	 * @param b divisor
+	 * @return the value dividend / divisor
+	 * @throws ArithmeticException if there is division by zero
 	 */
 	public static double idiv(double a, double b) {
 		if (b == 0){
@@ -22,49 +25,49 @@ public class MathLib {
 	}
 
 	/**
-	 * Multiplication.
-	 * @param a first number to multiplication
-	 * @param b second number to multiplication
-	 * @return result of multiplication
+	 * Returns the multiplication of double arguments.
+	 * 
 	 * @author AdamKuba
-	 * */
+	 * @param a multiplicand
+	 * @param b multiplier
+	 * @return result of multiplication
+	 */
 	public static double imul(double a, double b) {
 		return a*b;
 	}
 
 	/**
-	 * Returns substraction of double arguments.
-	 *
-	 * @param a minuend (the number from that is subtracted)
-	 * @param b subtrahend (the number being subtracted)
-	 *
-	 * @return difference (result of substraction)
+	 * Returns the subtraction of double arguments.
 	 *
 	 * @author kudlav
+	 * @param a minuend (the number from that is subtracted)
+	 * @param b subtrahend (the number being subtracted)
+	 * @return difference (result of subtraction)
 	 */
 	public  static double sub(double a, double b) {
 		return a-b;
 	}
-		/**
-		* Addition
-		* 
-		* @param a First number
-		* @param b The number which is added to the first one
-		* @return a + b
-		* 
-		* @author mmusil
-		*/
+	
+	/**
+	 * Returns the addition of double arguments.
+	 * 
+	 * @author mmusil
+	 * @param a first summand
+	 * @param b second summand
+	 * @return a + b
+	 */
 	public  static double add(double a, double b) {
 		return a+b;
 	}
 
 	/**
-	 * Nth root implemented by the formula from wikipedia.
-	 * @param n number of root
-	 * @param a root base
-	 * @return result of nth root
+	 * Returns the Nth root implemented by the formula from <a href="https://en.wikipedia.org/wiki/Nth_root"> wikipedia</a>.
+	 * 
 	 * @author AdamKuba
-	 * */
+	 * @param n degree
+	 * @param a radicand
+	 * @return nth root of the radicand
+	 */
 	public  static double nRoot(int n, double a) {
 		if(a<0){
 			return -1;
@@ -83,14 +86,12 @@ public class MathLib {
 
 
 	/**
-	 * Exponentiation - returns n-th power of a.
-	 *
-	 * @param n expoent
-	 * @param a base
-	 *
-	 * @return result of exponentiation (n-th power of a)
+	 * Returns the n-th power of a.
 	 *
 	 * @author kudlav
+	 * @param n exponent
+	 * @param a base
+	 * @return result of exponentiation (n-th power of a)
 	 */
 	public  static double exp(int n, double a) {
 		double result = 1.0D;
@@ -103,13 +104,13 @@ public class MathLib {
 		return (n < 0) ? 1/result : result;
 	}
 
-		/**
-		* Factorial
-		* @param a Number from its factorial is counted
-		* @return factorial from a, -1 if a<0
-		* @pre factorial is not defined for numbers <0, a>=0
-		* @author mmusil
-		*/
+	/**
+	 * Returns the factorial of argument. If arguments is negative, the result is -1.
+	 * 
+	 * @author mmusil
+	 * @param a number from which is factorial counted
+	 * @return factorial from a, -1 for negative argument
+	 */
 	public  static double fac(int a) {
 		if (a>0){
 			int f = a;
@@ -128,28 +129,28 @@ public class MathLib {
 	}
 
 	/**
-	 * Returns remainder of integer arguments.
+	 * Returns the remainder of integer arguments.
 	 * 
+	 * @author Rengyr
 	 * @param a the dividend
 	 * @param b the divisor
 	 * @return remainder of dividend and divisor
-	 * 
-	 * @author Rengyr
 	 */
 	public  static int mod(int a, int b) {
 		return a % b;
 	}
 
 	/**
-	 * Absolute value.
+	 * Returns the absolute value of double.
+	 * 
 	 * @param a number
-	 * @return number which is always positive
+	 * @return absolute value of argument
 	 */
 	private static double abs(double a){
 		return (a<=0.0D) ? 0.0D - a :a;
 	}
 	/**
-	 * Absolute value of integer.
+	 * Returns the Absolute value of integer.
 	 *
 	 * @param a number
 	 * @return number which is always positive
@@ -158,3 +159,4 @@ public class MathLib {
 		return (a<=0) ? 0-a : a;
 	}
 }
+/*** End of MathLib.java file ***/
