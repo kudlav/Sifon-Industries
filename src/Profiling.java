@@ -7,15 +7,31 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Class created for profiling MathLib methods via standard deviation calculation.
+ */
 public class Profiling {
 
 	Scanner in = null;
 
+	/**
+	 * Main method.
+	 * <p>
+	 * Make file named "test" with 100 random numbers and create {@link Profiling} class.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		generateFile("test",100);
 		new Profiling();
 	}
 	
+	/***
+	 * Constructor of {@link Profiling} class.
+	 * <p>
+	 * Open input scanner, ask for file name from which read numbers and calculate standard deviation 1000 times.
+	 * 
+	 * @author Rengyr
+	 */
 	public Profiling(){
 		in = new Scanner(System.in);
 		
@@ -124,7 +140,7 @@ public class Profiling {
 	}
 	
 	/**
-	 * Calculate the standard deviation of list using the formula of https://en.wikipedia.org/wiki/Standard_deviation.  
+	 * Calculate the standard deviation of list using the formula of <a href="https://en.wikipedia.org/wiki/Standard_deviation">Standard_deviation</a>.  
 	 * 
 	 * @param num list of numbers
 	 * @return standard deviation
@@ -167,3 +183,4 @@ public class Profiling {
 		
 	}
 }
+/*** End of Profiling.java file ***/

@@ -2,11 +2,16 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
+ * Class with JUnit tests for MathLib.
+ * 
  * @author Rengyr
  * @author AdamKuba
  */
 public class MathLibTests {
 	
+	/**
+	 * Junit tests for {@link MathLib#idiv(double, double)} method.
+	 */
 	@Test
 	public void divideTest(){
 		assertEquals(2f, MathLib.idiv(10f, 5f), 0.0001f);
@@ -29,6 +34,9 @@ public class MathLibTests {
 		
 	}
 	
+	/**
+	 * Junit tests for zero division in {@link MathLib#idiv(double, double)} method.
+	 */
 	@Test
 	public void zeroDivisionTest(){
 		try {
@@ -53,12 +61,18 @@ public class MathLibTests {
 
 	}
 	
+	/**
+	 * Junit tests for {@link MathLib#mod(int, int)} method.
+	 */
 	@Test
 	public void modTest(){
 		assertEquals(2,MathLib.mod(8,3));
 		assertEquals(0,MathLib.mod(9,3));
 	}
 	
+	/**
+	 * Junit tests for {@link MathLib#imul(double, double)} method.
+	 */
 	@Test
 	public void multiplicationTest(){
 		assertEquals(50f, MathLib.imul(10f, 5f), 0.0001f);
@@ -83,6 +97,9 @@ public class MathLibTests {
 		assertEquals(0f, MathLib.imul(-0.4f, 0f), 0.0001f);
 	}
 	
+	/**
+	 * Junit tests for {@link MathLib#add(double, double)} method.
+	 */
 	@Test
 	public void additionTest(){
 		assertEquals(15f, MathLib.add(10f, 5f), 0.0001f);
@@ -107,6 +124,9 @@ public class MathLibTests {
 		assertEquals(-0.4f, MathLib.add(-0.4f, 0f), 0.0001f);
 	}
 	
+	/**
+	 * Junit tests for {@link MathLib#sub(double, double)} method.
+	 */
 	@Test
 	public void subtractionTest(){
 		assertEquals(5f, MathLib.sub(10f, 5f), 0.0001f);
@@ -131,6 +151,9 @@ public class MathLibTests {
 		assertEquals(-0.4f, MathLib.sub(-0.4f, 0f), 0.0001f);
 	}
 
+	/**
+	 * Junit tests for {@link MathLib#fac(int)} method.
+	 */
 	@Test
 	public void facTest(){
 		assertEquals(24f, MathLib.fac(4), 0.0001f);
@@ -142,6 +165,9 @@ public class MathLibTests {
 
 	}
 	
+	/**
+	 * Junit tests for {@link MathLib#exp(int, double)} method.
+	 */
 	@Test
 	public void expTest(){
 		assertEquals(4f, MathLib.exp(2,2f), 0.0001f);
@@ -159,6 +185,9 @@ public class MathLibTests {
 
 	}
 	
+	/**
+	 * Junit tests for {@link MathLib#nRoot(int, double)} method.
+	 */
 	@Test
 	public void nRootTest(){
 		assertEquals(2f, MathLib.nRoot(2,4f), 0.0001f);
@@ -170,3 +199,4 @@ public class MathLibTests {
 
 	}
 }
+/*** End of MathLibTests.java file ***/
