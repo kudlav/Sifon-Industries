@@ -76,15 +76,7 @@ public class FXMLDocumentController implements Initializable {
 			this.operation="";
 			enableButtons();
 			this.error = 0;
-
 		}
-
-		// Operation was selected, the second number is going to be inserted
-	/*	if(!getOperation().equals("") && !issetMemory()) {
-			setMemory(Double.parseDouble(oldNumber));
-			oldNumber = "";
-			setHistory();
-		}*/
 		// First digit, replace default zero with number
 		else if(oldNumber.equals("0")) {
 			oldNumber = "";
@@ -107,11 +99,11 @@ public class FXMLDocumentController implements Initializable {
 				clearMemory();
 				this.display.setText(String.valueOf(result));
 				break;
-			case "*":  result = MathLib.imul(getMemory(), Double.parseDouble(this.display.getText()));
+			case "×":  result = MathLib.imul(getMemory(), Double.parseDouble(this.display.getText()));
 				clearMemory();
 				this.display.setText(String.valueOf(result));
 				break;
-			case "/":  try{
+			case "÷":  try{
 				result = MathLib.idiv(getMemory(), Double.parseDouble(this.display.getText()));
 				clearMemory();
 				this.display.setText(String.valueOf(result));
@@ -172,11 +164,11 @@ public class FXMLDocumentController implements Initializable {
 			if (sub.isDisable()) return;
 			handleMinusButton(null);
 			break;
-		case '*':
+		case '×':
 			if (imul.isDisable()) return;
 			handleMulButton(null);
 			break;
-		case '/':
+		case '÷':
 			if (idiv.isDisable()) return;
 			handleDivButton(null);
 			break;
@@ -191,8 +183,8 @@ public class FXMLDocumentController implements Initializable {
 		case 'b':
 			if (!display.getText().isEmpty()){
 				display.setText(display.getText().substring(0, display.getText().length()-1));
-				if (display.getText().isEmpty())display.setText("0");
-				else if (!display.getText().contains("."))enableNonDec();
+				if (display.getText().isEmpty()) display.setText("0");
+				else if (!display.getText().contains(".")) enableNonDec();
 			}
 			break;
 		case 'c':
@@ -204,7 +196,7 @@ public class FXMLDocumentController implements Initializable {
 	private void handleOperatinButton(String op){
 		if (!getOperation().isEmpty()){
 			handleResultButton(null);
-			if (isDisplayEmpty())return;
+			if (isDisplayEmpty()) return;
 		}
 		setOperation(op);
 		setMemory(Double.parseDouble(display.getText()));
@@ -217,82 +209,53 @@ public class FXMLDocumentController implements Initializable {
 	private void handlePlusButton(ActionEvent event) {
 		handleOperatinButton("+");
 		buttonPoint.setDisable(false);
-		// Operation selected instead of "=", set result of previous operation as first number
-		if (issetMemory() && !operation.equals("")) {
-			// TODO result
-		}
 	}
 
 	@FXML
 	private void handleMinusButton(ActionEvent event) {
+		// When true, it's not operation, but negation of number
 		if ((!issetMemory() || !getOperation().isEmpty()) && (display.getText().equals("0") || display.getText().equals(""))){
-			display.setText("");
-			display.setText(display.getText() + "-");
+			display.setText("-");
 			fac.setDisable(true);
 			return;
 		}
 		handleOperatinButton("-");
 		buttonPoint.setDisable(false);
-		// Operation selected instead of "=", set result of previous operation as first number
-		if (issetMemory() && !operation.equals("")) {
-			// TODO result
-		}
 	}
 
 	@FXML
 	private void handleMulButton(ActionEvent event) {
-		handleOperatinButton("*");
+		handleOperatinButton("×");
 		buttonPoint.setDisable(false);
-		// Operation selected instead of "=", set result of previous operation as first number
-		if (issetMemory() && !operation.equals("")) {
-			// TODO result
-		}
 	}
 
 	@FXML
 	private void handleDivButton(ActionEvent event) {
-		handleOperatinButton("/");
+		handleOperatinButton("÷");
 		buttonPoint.setDisable(false);
-		// Operation selected instead of "=", set result of previous operation as first number
-		if (issetMemory() && !operation.equals("")) {
-			// TODO result !!division by zero
-		}
 	}
 
 	@FXML
 	private void handleModButton(ActionEvent event) {
 		handleOperatinButton("%");
 		buttonPoint.setDisable(true);
-		// Operation selected instead of "=", set result of previous operation as first number
-		if (issetMemory() && !operation.equals("")) {
-			// TODO result
-		}
 	}
 
 	@FXML
 	private void handleFacButton(ActionEvent event) {
 		handleOperatinButton("!");
-		// TODO result
 	}
 
 	@FXML
 	private void handleExpButton(ActionEvent event) {
 		handleOperatinButton("exp");
 		buttonPoint.setDisable(true);
-		// Operation selected instead of "=", set result of previous operation as first number
-		if (issetMemory() && !operation.equals("")) {
-			// TODO result
-		}
 	}
 
 	@FXML
 	private void handleRootButton(ActionEvent event) {
 		handleOperatinButton("root");
 		sub.setDisable(true);
-		// Operation selected instead of "=", set result of previous operation as first number
-		if (issetMemory() && !operation.equals("")) {
-			// TODO result
-		}
 	}
 
 	@FXML
@@ -301,14 +264,12 @@ public class FXMLDocumentController implements Initializable {
 		setOperation("");
 		display.setText("0");
 		display1.setText("");
-		// TODO enable all keys (button point, operations,...)
 		enableButtons();
 	}
 
 	@FXML
 	private void handlePointButton(ActionEvent event) {
-		//TODO
-		if (display.getText().isEmpty())display.setText("0");
+		if (display.getText().isEmpty()) display.setText("0");
 		if (Double.parseDouble(display.getText())%1==0) display.setText(String.valueOf((int)Double.parseDouble(display.getText())));
 		disableNonDec();
 		String text = display.getText()+".";
@@ -424,7 +385,6 @@ public class FXMLDocumentController implements Initializable {
 
 	private void setHistory(){
 		display1.setText(String.valueOf(getMemory())+" "+ getOperation()+" ");
-		//display1.setText("history");
 	}
 	
 	/**

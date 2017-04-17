@@ -54,9 +54,9 @@ public class Calc extends Application {
 		    }else if (e.getCode() == KeyCode.SUBTRACT || e.getCode() == KeyCode.MINUS) {
 		        controller.keyPressed('-');
 		    }else if (e.getCode() == KeyCode.MULTIPLY) {
-		        controller.keyPressed('*');
+		        controller.keyPressed('×');
 		    }else if (e.getCode() == KeyCode.DIVIDE || e.getCode() == KeyCode.SLASH) {
-		        controller.keyPressed('/');
+		        controller.keyPressed('÷');
 		    }else if (e.getCode() == KeyCode.ENTER || e.getCode() == KeyCode.EQUALS) {
 		        controller.keyPressed('=');
 		    }else if (e.getCode() == KeyCode.PERIOD || e.getCode() == KeyCode.COMMA || e.getCode() == KeyCode.DECIMAL) {
@@ -75,6 +75,5 @@ public class Calc extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
 
 }
