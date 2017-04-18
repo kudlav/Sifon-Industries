@@ -66,6 +66,11 @@ public class MathLib {
 	 * @author AdamKuba
 	 * */
 	public  static double nRoot(int n, double a) {
+		boolean signed = false;
+		if (n<0){
+			n = -n;
+			signed = true;
+		}
 		if(a<0){
 			return -1;
 		}
@@ -78,6 +83,7 @@ public class MathLib {
 			next = ((n-1.0)*prev+(a/exp(n-1,prev)))/n;
 			
 		}
+		if (signed) next = 1/next;
 		return next;
 	}
 
@@ -112,9 +118,9 @@ public class MathLib {
 		*/
 	public  static double fac(int a) {
 		if (a>0){
-			int f = a;
+			double f = a;
 			while (a>1){
-				f = f * (a-1);
+				f = f * (a-1f);
 				a--;
 			}
 			return f;

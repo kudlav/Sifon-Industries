@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
  */
 public class FXMLDocumentController implements Initializable {
 
+	
 	@FXML
 	private Label display;
 
@@ -69,7 +70,10 @@ public class FXMLDocumentController implements Initializable {
 	private void handleNumberButton(ActionEvent event) {
 		String textPressed = ((Button)event.getSource()).getText();
 		String oldNumber = display.getText();
-
+		if (!display.getText().contains(".")) {
+			buttonPoint.setDisable(false);
+			sub.setDisable(false);
+		}
 		if(this.error == 1){
 			oldNumber = "";
 			this.issetMemory = false;
@@ -78,85 +82,102 @@ public class FXMLDocumentController implements Initializable {
 			this.error = 0;
 
 		}
-
-		// Operation was selected, the second number is going to be inserted
-	/*	if(!getOperation().equals("") && !issetMemory()) {
-			setMemory(Double.parseDouble(oldNumber));
-			oldNumber = "";
-			setHistory();
-		}*/
 		// First digit, replace default zero with number
 		else if(oldNumber.equals("0")) {
 			oldNumber = "";
 		}
 
 		display.setText(oldNumber+textPressed);
+		if ((isDisplayEmpty() || (Double.parseDouble(display.getText())==0d)) && getOperation().equals("/")){
+			rslt.setDisable(true);
+		}else{
+			rslt.setDisable(false);
+		}
 	}
 
 	@FXML
 	private void handleResultButton(ActionEvent event) {
-		if (isDisplayEmpty()) return;
+		if (isDisplayEmpty() && !getOperation().equals("!")) return;
 		String OP = getOperation();
 		double result;
 		switch (OP){
-			case "+":  result = MathLib.add(getMemory(), Double.parseDouble(this.display.getText()));
+			case "+":
+				result = MathLib.add(getMemory(), Double.parseDouble(this.display.getText()));
 				clearMemory();
 				this.display.setText(String.valueOf(result));
 				break;
-			case "-":  result = MathLib.sub(getMemory(), Double.parseDouble(this.display.getText()));
+			case "-":
+				result = MathLib.sub(getMemory(), Double.parseDouble(this.display.getText()));
 				clearMemory();
 				this.display.setText(String.valueOf(result));
 				break;
-			case "*":  result = MathLib.imul(getMemory(), Double.parseDouble(this.display.getText()));
+			case "*":
+				result = MathLib.imul(getMemory(), Double.parseDouble(this.display.getText()));
 				clearMemory();
 				this.display.setText(String.valueOf(result));
 				break;
-			case "/":  try{
+			case "/":
+				try{
 				result = MathLib.idiv(getMemory(), Double.parseDouble(this.display.getText()));
 				clearMemory();
 				this.display.setText(String.valueOf(result));
 				}catch (ArithmeticException AE){
 					this.display.setText(AE.getMessage());
 				this.error = 1;
-				dissableButtons();
+				disableButtons();
 				}
 				break;
-			case "%":  result = MathLib.mod((int)getMemory(), Integer.parseInt(this.display.getText()));
+			case "%":
+				result = MathLib.mod((int)getMemory(), Integer.parseInt(this.display.getText()));
 				clearMemory();
 				this.display.setText(String.valueOf(result));
 				break;
-			case "!":  result = MathLib.fac(Integer.parseInt(this.display.getText()));
+			case "!":
+				result = MathLib.fac((int)getMemory());
 				if (result==-1){
 					this.display.setText(String.valueOf("Positive integers only"));
 					this.error = 1;
-					dissableButtons();
-				}
-				else{
-					this.display.setText(String.valueOf((int)result));
-					clearMemory();
-				}
-				break;
-			case "exp":  result = MathLib.exp(Integer.parseInt(this.display.getText()), getMemory());
-				clearMemory();
-				this.display.setText(String.valueOf(result));
-				break;
-			case "root":  result = MathLib.nRoot((int)getMemory(), Double.parseDouble(this.display.getText()));
-
-				if (result==-1){
-					this.display.setText(String.valueOf("Positive numbers only"));
-					this.error = 1;
-					dissableButtons();
+					disableButtons();
 				}
 				else{
 					this.display.setText(String.valueOf(result));
 					clearMemory();
 				}
 				break;
+			case "exp":
+				result = MathLib.exp(Integer.parseInt(this.display.getText()), getMemory());
+				clearMemory();
+				this.display.setText(String.valueOf(result));
+				break;
+			case "root":  
+				boolean signed = false;
+				if (getMemory()%2==1 && display.getText().contains("-")){
+					display.setText(display.getText().substring(1));
+					signed = true;
+				}
+				result = MathLib.nRoot((int)getMemory(), Double.parseDouble(this.display.getText()));
+				if (result==-1){
+					this.display.setText(String.valueOf("Positive numbers only"));
+					this.error = 1;
+					disableButtons();
+				}
+				else{
+					this.display.setText(String.valueOf(result));
+					clearMemory();
+				}
+				if (signed){
+					display.setText("-"+display.getText());
+				}
+				break;
 		}
 		if (display.getText().contains(".")) disableNonDec();
 		if (display.getText().isEmpty() || Double.parseDouble(display.getText())%1==0) enableButtons();
 		display1.setText("");
-
+		setOperation("");
+		if (!Double.isFinite(Double.parseDouble(display.getText()))) {
+			this.error = 1;
+			disableButtons();
+		}
 	}
 	
 	public void keyPressed(char key){
@@ -189,11 +210,21 @@ public class FXMLDocumentController implements Initializable {
 			handlePointButton(null);
 			break;
 		case 'b':
-			if (!display.getText().isEmpty()){
+			if (isDisplayEmpty() || display.getText().equals("0")){
+				enableButtons();
+				if (getOperation().equals("/")){
+					rslt.setDisable(true);
+				}
+				display.setText("0");
+			}
+			else if (!display.getText().isEmpty()){
 				display.setText(display.getText().substring(0, display.getText().length()-1));
 				if (display.getText().isEmpty())display.setText("0");
 				else if (!display.getText().contains("."))enableNonDec();
-			}
+				if ((Double.parseDouble(display.getText())==0d) && getOperation().equals("/")){
+					rslt.setDisable(true);
+				}
+			} 
 			break;
 		case 'c':
 			handleClearButton(null);
@@ -202,25 +233,21 @@ public class FXMLDocumentController implements Initializable {
 	}
 	
 	private void handleOperatinButton(String op){
+		if (display.getText().equals("-")) return;
 		if (!getOperation().isEmpty()){
 			handleResultButton(null);
-			if (isDisplayEmpty())return;
+			if (isDisplayEmpty()) return;
 		}
 		setOperation(op);
 		setMemory(Double.parseDouble(display.getText()));
 		setHistory();
 		display.setText("");
-		
+		setButtons(op);
 	}
 
 	@FXML
 	private void handlePlusButton(ActionEvent event) {
 		handleOperatinButton("+");
-		buttonPoint.setDisable(false);
-		// Operation selected instead of "=", set result of previous operation as first number
-		if (issetMemory() && !operation.equals("")) {
-			// TODO result
-		}
 	}
 
 	@FXML
@@ -228,71 +255,42 @@ public class FXMLDocumentController implements Initializable {
 		if ((!issetMemory() || !getOperation().isEmpty()) && (display.getText().equals("0") || display.getText().equals(""))){
 			display.setText("");
 			display.setText(display.getText() + "-");
-			fac.setDisable(true);
+			fac.setDisable(true);			
+			sub.setDisable(true);
 			return;
 		}
 		handleOperatinButton("-");
-		buttonPoint.setDisable(false);
-		// Operation selected instead of "=", set result of previous operation as first number
-		if (issetMemory() && !operation.equals("")) {
-			// TODO result
-		}
 	}
 
 	@FXML
 	private void handleMulButton(ActionEvent event) {
 		handleOperatinButton("*");
-		buttonPoint.setDisable(false);
-		// Operation selected instead of "=", set result of previous operation as first number
-		if (issetMemory() && !operation.equals("")) {
-			// TODO result
-		}
 	}
 
 	@FXML
 	private void handleDivButton(ActionEvent event) {
 		handleOperatinButton("/");
-		buttonPoint.setDisable(false);
-		// Operation selected instead of "=", set result of previous operation as first number
-		if (issetMemory() && !operation.equals("")) {
-			// TODO result !!division by zero
-		}
 	}
 
 	@FXML
 	private void handleModButton(ActionEvent event) {
 		handleOperatinButton("%");
-		buttonPoint.setDisable(true);
-		// Operation selected instead of "=", set result of previous operation as first number
-		if (issetMemory() && !operation.equals("")) {
-			// TODO result
-		}
 	}
 
 	@FXML
 	private void handleFacButton(ActionEvent event) {
 		handleOperatinButton("!");
-		// TODO result
 	}
 
 	@FXML
 	private void handleExpButton(ActionEvent event) {
 		handleOperatinButton("exp");
-		buttonPoint.setDisable(true);
-		// Operation selected instead of "=", set result of previous operation as first number
-		if (issetMemory() && !operation.equals("")) {
-			// TODO result
-		}
 	}
 
 	@FXML
 	private void handleRootButton(ActionEvent event) {
 		handleOperatinButton("root");
-		sub.setDisable(true);
-		// Operation selected instead of "=", set result of previous operation as first number
-		if (issetMemory() && !operation.equals("")) {
-			// TODO result
-		}
+		
 	}
 
 	@FXML
@@ -301,13 +299,12 @@ public class FXMLDocumentController implements Initializable {
 		setOperation("");
 		display.setText("0");
 		display1.setText("");
-		// TODO enable all keys (button point, operations,...)
 		enableButtons();
+		error = 0;
 	}
 
 	@FXML
 	private void handlePointButton(ActionEvent event) {
-		//TODO
 		if (display.getText().isEmpty())display.setText("0");
 		if (Double.parseDouble(display.getText())%1==0) display.setText(String.valueOf((int)Double.parseDouble(display.getText())));
 		disableNonDec();
@@ -334,7 +331,7 @@ public class FXMLDocumentController implements Initializable {
 		buttonPoint.setDisable(false);
 	}
 	
-	private void dissableButtons(){
+	private void disableButtons(){
 		buttonPoint.setDisable(true);
 		mod.setDisable(true);
 		idiv.setDisable(true);
@@ -360,6 +357,35 @@ public class FXMLDocumentController implements Initializable {
 		rslt.setDisable(false);
 	}
 
+	private void setButtons(String operation){
+		enableButtons();
+		switch (operation) {
+			case "+":
+				
+				break;
+			case "-":
+	
+				break;
+			case "*":
+	
+				break;
+			case "/":
+				
+				break;
+			case "%":
+				buttonPoint.setDisable(true);
+				break;
+			case "!":
+				buttonPoint.setDisable(true);
+				break;
+			case "exp":
+				buttonPoint.setDisable(true);
+				break;
+			case "root":
+				if (getMemory()%2==0) sub.setDisable(true);
+				break;
+		}
+	}
 
 	/**
 	 * Save int to memory. IssetMemory is set to true.
