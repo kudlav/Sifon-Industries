@@ -74,6 +74,7 @@ public class FXMLDocumentController implements Initializable {
 			buttonPoint.setDisable(false);
 			sub.setDisable(false);
 		}
+
 		if(this.error == 1){
 			oldNumber = "";
 			this.issetMemory = false;
@@ -171,7 +172,7 @@ public class FXMLDocumentController implements Initializable {
 				break;
 		}
 		if (display.getText().contains(".")) disableNonDec();
-		if (display.getText().isEmpty() || Double.parseDouble(display.getText())%1==0) enableButtons();
+		if (error == 0 && (display.getText().isEmpty() || Double.parseDouble(display.getText())%1==0)) enableButtons();
 		display1.setText("");
 		setOperation("");
 		if (!Double.isFinite(Double.parseDouble(display.getText()))) {
@@ -242,6 +243,7 @@ public class FXMLDocumentController implements Initializable {
 		setMemory(Double.parseDouble(display.getText()));
 		setHistory();
 		display.setText("");
+		if(op.equals("!")) handleResultButton(null);
 		setButtons(op);
 	}
 
@@ -257,6 +259,7 @@ public class FXMLDocumentController implements Initializable {
 			display.setText(display.getText() + "-");
 			fac.setDisable(true);			
 			sub.setDisable(true);
+			buttonPoint.setDisable(true);
 			return;
 		}
 		handleOperatinButton("-");
@@ -364,7 +367,7 @@ public class FXMLDocumentController implements Initializable {
 				
 				break;
 			case "-":
-	
+				
 				break;
 			case "*":
 	
@@ -376,7 +379,7 @@ public class FXMLDocumentController implements Initializable {
 				buttonPoint.setDisable(true);
 				break;
 			case "!":
-				buttonPoint.setDisable(true);
+				
 				break;
 			case "exp":
 				buttonPoint.setDisable(true);
