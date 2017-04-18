@@ -175,7 +175,7 @@ public class FXMLDocumentController implements Initializable {
 		if (error == 0 && (display.getText().isEmpty() || Double.parseDouble(display.getText())%1==0)) enableButtons();
 		display1.setText("");
 		setOperation("");
-		if (!Double.isFinite(Double.parseDouble(display.getText()))) {
+		if (error ==0 && !Double.isFinite(Double.parseDouble(display.getText()))) {
 			this.error = 1;
 			disableButtons();
 		}
@@ -238,6 +238,7 @@ public class FXMLDocumentController implements Initializable {
 		if (!getOperation().isEmpty()){
 			handleResultButton(null);
 			if (isDisplayEmpty()) return;
+			if (error == 1) return;
 		}
 		setOperation(op);
 		setMemory(Double.parseDouble(display.getText()));
