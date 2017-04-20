@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
@@ -69,10 +70,10 @@ public class MathLib {
 	 * @param a radicand
 	 * @return nth root of the radicand
 	 */
-	public static BigDecimal nRoot(int n, BigDecimal a) {
+	public static BigDecimal nRoot(BigInteger n, BigDecimal a) {
 		boolean signed = false;
-		if (n<0){
-			n = -n;
+		if (n.doubleValue()<0){
+			n = n.negate();
 			signed = true;
 		}
 		if(signed && a.doubleValue()<0){
@@ -84,7 +85,7 @@ public class MathLib {
 		
 		while(abs(prev.subtract(next)).doubleValue()>p){
 			prev = next;
-			next = (new BigDecimal(n-1.0).multiply(prev).add(a.divide(exp(n-1,prev),15, RoundingMode.HALF_UP))).divide(new BigDecimal(n),15, RoundingMode.HALF_UP);
+			next = (new BigDecimal(n.subtract(new BigInteger("1"))).multiply(prev).add(a.divide(exp(n.subtract(new BigInteger("1")),prev),15, RoundingMode.HALF_UP))).divide(new BigDecimal(n),15, RoundingMode.HALF_UP);
 		}
 		if (signed) next = new BigDecimal("1").divide(next,15, RoundingMode.HALF_UP);
 		next = next.round(new MathContext(10));
@@ -100,15 +101,15 @@ public class MathLib {
 	 * @param a base
 	 * @return result of exponentiation (n-th power of a)
 	 */
-	public static BigDecimal exp(int n, BigDecimal a) {
+	public static BigDecimal exp(BigInteger n, BigDecimal a) {
 		BigDecimal result = new BigDecimal("1");
-		int exp = abs(n);
+		BigInteger exp = abs(n);
 
-		for(int i = 0; i < exp; i++) {
+		for(int i = 0; i < exp.doubleValue(); i++) {
 			result = result.multiply(a);
 		}
 
-		return (n < 0) ? new BigDecimal("1").divide(result) : result;
+		return (n.doubleValue() < 0) ? new BigDecimal("1").divide(result) : result;
 	}
 
 	/**
@@ -143,8 +144,8 @@ public class MathLib {
 	 * @param b the divisor
 	 * @return remainder of dividend and divisor
 	 */
-	public static BigDecimal mod(int a, int b) {
-		return new BigDecimal(a % b);
+	public static BigDecimal mod(BigInteger a, BigInteger b) {
+		return new BigDecimal(a.mod(b));
 	}
 
 	/**
@@ -162,8 +163,8 @@ public class MathLib {
 	 * @param a number
 	 * @return number which is always positive
 	 */
-	private static int abs(int a){
-		return (a<=0) ? 0-a : a;
+	private static BigInteger abs(BigInteger a){
+		return (a.doubleValue()<=0) ? new BigInteger("0").subtract(a) : a;
 	}
 }
 /*** End of MathLib.java file ***/

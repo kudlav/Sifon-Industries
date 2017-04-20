@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import org.junit.Test;
 
@@ -69,8 +70,8 @@ public class MathLibTests {
 	 */
 	@Test
 	public void modTest(){
-		assertTrue(new BigDecimal(2).compareTo(MathLib.mod(8,3))==0);
-		assertTrue(new BigDecimal(0).compareTo(MathLib.mod(9,3))==0);
+		assertTrue(new BigDecimal(2).compareTo(MathLib.mod(new BigInteger("8"),new BigInteger("3")))==0);
+		assertTrue(new BigDecimal(0).compareTo(MathLib.mod(new BigInteger("9"),new BigInteger("3")))==0);
 	}
 	
 	/**
@@ -173,17 +174,17 @@ public class MathLibTests {
 	 */
 	@Test
 	public void expTest(){
-		assertTrue(new BigDecimal(4).compareTo(MathLib.exp(2, new BigDecimal(2)))==0);
-		assertTrue(new BigDecimal(32).compareTo(MathLib.exp(5, new BigDecimal(2)))==0);
+		assertTrue(new BigDecimal(4).compareTo(MathLib.exp(new BigInteger("2"), new BigDecimal(2)))==0);
+		assertTrue(new BigDecimal(32).compareTo(MathLib.exp(new BigInteger("5"), new BigDecimal(2)))==0);
 		
-		assertTrue(new BigDecimal(1).compareTo(MathLib.exp(0, new BigDecimal(2)))==0);
-		assertTrue(new BigDecimal(0).compareTo(MathLib.exp(2, new BigDecimal(0)))==0);
+		assertTrue(new BigDecimal(1).compareTo(MathLib.exp(new BigInteger("0"), new BigDecimal(2)))==0);
+		assertTrue(new BigDecimal(0).compareTo(MathLib.exp(new BigInteger("2"), new BigDecimal(0)))==0);
 		
-		assertTrue(new BigDecimal("0.25").compareTo(MathLib.exp(2, new BigDecimal("0.5")))==0);
-		assertTrue(new BigDecimal("0.125").compareTo(MathLib.exp(3, new BigDecimal("0.5")))==0);
+		assertTrue(new BigDecimal("0.25").compareTo(MathLib.exp(new BigInteger("2"), new BigDecimal("0.5")))==0);
+		assertTrue(new BigDecimal("0.125").compareTo(MathLib.exp(new BigInteger("3"), new BigDecimal("0.5")))==0);
 		
-		assertTrue(new BigDecimal("0.001").compareTo(MathLib.exp(-3, new BigDecimal("10")))==0);
-		assertTrue(new BigDecimal("-0.5").compareTo(MathLib.exp(-1, new BigDecimal("-2")))==0);
+		assertTrue(new BigDecimal("0.001").compareTo(MathLib.exp(new BigInteger("-3"), new BigDecimal("10")))==0);
+		assertTrue(new BigDecimal("-0.5").compareTo(MathLib.exp(new BigInteger("-1"), new BigDecimal("-2")))==0);
 
 	}
 	
@@ -192,12 +193,12 @@ public class MathLibTests {
 	 */
 	@Test
 	public void nRootTest(){
-		assertTrue(new BigDecimal(2).compareTo(MathLib.nRoot(2, new BigDecimal(4)))==0);
-		assertTrue(new BigDecimal(2).compareTo(MathLib.nRoot(5, new BigDecimal(32)))==0);
+		assertTrue(new BigDecimal(2).compareTo(MathLib.nRoot(new BigInteger("2"), new BigDecimal(4)))==0);
+		assertTrue(new BigDecimal(2).compareTo(MathLib.nRoot(new BigInteger("5"), new BigDecimal(32)))==0);
 		
-		assertTrue(new BigDecimal(0).compareTo(MathLib.nRoot(2, new BigDecimal(0)))==0);
+		assertTrue(new BigDecimal(0).compareTo(MathLib.nRoot(new BigInteger("2"), new BigDecimal(0)))==0);
 		
-		assertTrue(new BigDecimal("0.9330329915").compareTo(MathLib.nRoot(10, new BigDecimal(0.5)))==0);
+		assertTrue(new BigDecimal("0.9330329915").compareTo(MathLib.nRoot(new BigInteger("10"), new BigDecimal(0.5)))==0);
 	}
 }
 /*** End of MathLibTests.java file ***/

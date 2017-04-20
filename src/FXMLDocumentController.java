@@ -120,7 +120,7 @@ public class FXMLDocumentController implements Initializable {
 
 			@Override
 			public BigDecimal function() {
-				return MathLib.mod(numbers[0].intValue(), numbers[1].intValue());
+				return MathLib.mod(numbers[0].toBigInteger(), numbers[1].toBigInteger());
 			}
 			
 		});
@@ -129,7 +129,7 @@ public class FXMLDocumentController implements Initializable {
 
 			@Override
 			public BigDecimal function() {
-				return MathLib.exp(numbers[1].intValue(), numbers[0]);
+				return MathLib.exp(numbers[1].toBigInteger(), numbers[0]);
 			}
 		});
 		
@@ -146,7 +146,7 @@ public class FXMLDocumentController implements Initializable {
 
 			@Override
 			public BigDecimal function() {
-				return MathLib.nRoot(numbers[0].intValue(),numbers[1]);
+				return MathLib.nRoot(numbers[0].toBigInteger(),numbers[1]);
 			}
 			
 			@Override
