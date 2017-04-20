@@ -1,4 +1,7 @@
 import static org.junit.Assert.*;
+
+import java.math.BigDecimal;
+
 import org.junit.Test;
 
 /**
@@ -14,23 +17,23 @@ public class MathLibTests {
 	 */
 	@Test
 	public void divideTest(){
-		assertEquals(2f, MathLib.idiv(10f, 5f), 0.0001f);
-		assertEquals(-2f, MathLib.idiv(-10f, 5f), 0.0001f);
-		assertEquals(-2f, MathLib.idiv(10f, -5f), 0.0001f);
-		assertEquals(2f, MathLib.idiv(-10f, -5f), 0.0001f);
+		assertTrue(new BigDecimal(2).compareTo(MathLib.idiv(new BigDecimal(10), new BigDecimal(5)))==0);
+		assertTrue(new BigDecimal(-2).compareTo(MathLib.idiv(new BigDecimal(-10), new BigDecimal(5)))==0);
+		assertTrue(new BigDecimal(-2).compareTo(MathLib.idiv(new BigDecimal(10), new BigDecimal(-5)))==0);
+		assertTrue(new BigDecimal(2).compareTo(MathLib.idiv(new BigDecimal(-10), new BigDecimal(-5)))==0);
 		
-		assertEquals(0.5f, MathLib.idiv(5f, 10f), 0.0001f);
-		assertEquals(-0.5f, MathLib.idiv(-5f, 10f), 0.0001f);
-		assertEquals(-0.5f, MathLib.idiv(5f, -10f), 0.0001f);
-		assertEquals(0.5f, MathLib.idiv(-5f, -10f), 0.0001f);
+		assertTrue(new BigDecimal("0.5").compareTo(MathLib.idiv(new BigDecimal(5), new BigDecimal(10)))==0);
+		assertTrue(new BigDecimal("-0.5").compareTo(MathLib.idiv(new BigDecimal(-5), new BigDecimal(10)))==0);
+		assertTrue(new BigDecimal("-0.5").compareTo(MathLib.idiv(new BigDecimal(5), new BigDecimal(-10)))==0);
+		assertTrue(new BigDecimal("0.5").compareTo(MathLib.idiv(new BigDecimal(-5), new BigDecimal(-10)))==0);
 		
-		assertEquals(8f, MathLib.idiv(8f, 1f), 0.0001f);
-		assertEquals(-8f, MathLib.idiv(-8f, 1f), 0.0001f);
-		assertEquals(-8f, MathLib.idiv(8f, -1f), 0.0001f);
-		assertEquals(8f, MathLib.idiv(-8f, -1f), 0.0001f);
+		assertTrue(new BigDecimal(8).compareTo(MathLib.idiv(new BigDecimal(8), new BigDecimal(1)))==0);
+		assertTrue(new BigDecimal(-8).compareTo(MathLib.idiv(new BigDecimal(-8), new BigDecimal(1)))==0);
+		assertTrue(new BigDecimal(-8).compareTo(MathLib.idiv(new BigDecimal(8), new BigDecimal(-1)))==0);
+		assertTrue(new BigDecimal(8).compareTo(MathLib.idiv(new BigDecimal(-8), new BigDecimal(-1)))==0);
 		
-		assertEquals(0f, MathLib.idiv(0f, 5f), 0.0001f);
-		assertEquals(0f, MathLib.idiv(0f, -5f), 0.0001f);
+		assertTrue(new BigDecimal(0).compareTo(MathLib.idiv(new BigDecimal(0), new BigDecimal(5)))==0);
+		assertTrue(new BigDecimal(0).compareTo(MathLib.idiv(new BigDecimal(0), new BigDecimal(-5)))==0);
 		
 	}
 	
@@ -40,22 +43,22 @@ public class MathLibTests {
 	@Test
 	public void zeroDivisionTest(){
 		try {
-			MathLib.idiv(10f, 0f);
+			 MathLib.idiv(new BigDecimal(10), new BigDecimal(0));
 			fail("Didn't throw zero divison exception!");
 		} catch (ArithmeticException e) {}
 		
 		try {
-			MathLib.idiv(-10f, 0f);
+			 MathLib.idiv(new BigDecimal(-10), new BigDecimal(0));
 			fail("Didn't throw zero divison exception!");
 		} catch (ArithmeticException e) {}
 		
 		try {
-			MathLib.idiv(0.3f, 0f);
+			 MathLib.idiv(new BigDecimal("0.3"), new BigDecimal(0));
 			fail("Didn't throw zero divison exception!");
 		} catch (ArithmeticException e) {}
 		
 		try {
-			MathLib.idiv(-0.3f, 0f);
+			 MathLib.idiv(new BigDecimal("-0.3"), new BigDecimal(0));
 			fail("Didn't throw zero divison exception!");
 		} catch (ArithmeticException e) {}
 
@@ -66,8 +69,8 @@ public class MathLibTests {
 	 */
 	@Test
 	public void modTest(){
-		assertEquals(2,MathLib.mod(8,3));
-		assertEquals(0,MathLib.mod(9,3));
+		assertTrue(new BigDecimal(2).compareTo(MathLib.mod(8,3))==0);
+		assertTrue(new BigDecimal(0).compareTo(MathLib.mod(9,3))==0);
 	}
 	
 	/**
@@ -75,26 +78,26 @@ public class MathLibTests {
 	 */
 	@Test
 	public void multiplicationTest(){
-		assertEquals(50f, MathLib.imul(10f, 5f), 0.0001f);
-		assertEquals(-50f, MathLib.imul(-10f, 5f), 0.0001f);
-		assertEquals(-50f, MathLib.imul(10f, -5f), 0.0001f);
-		assertEquals(50f, MathLib.imul(-10f, -5f), 0.0001f);
+		assertTrue(new BigDecimal(50).compareTo(MathLib.imul(new BigDecimal(10), new BigDecimal(5)))==0);
+		assertTrue(new BigDecimal(-50).compareTo(MathLib.imul(new BigDecimal(-10), new BigDecimal(5)))==0);
+		assertTrue(new BigDecimal(-50).compareTo(MathLib.imul(new BigDecimal(10), new BigDecimal(-5)))==0);
+		assertTrue(new BigDecimal(50).compareTo(MathLib.imul(new BigDecimal(-10), new BigDecimal(-5)))==0);
 		
-		assertEquals(50f, MathLib.imul(5f, 10f), 0.0001f);
-		assertEquals(-50f, MathLib.imul(-5f, 10f), 0.0001f);
-		assertEquals(-50f, MathLib.imul(5f, -10f), 0.0001f);
-		assertEquals(50f, MathLib.imul(-5f, -10f), 0.0001f);
+		assertTrue(new BigDecimal(50).compareTo(MathLib.imul(new BigDecimal(5), new BigDecimal(10)))==0);
+		assertTrue(new BigDecimal(-50).compareTo(MathLib.imul(new BigDecimal(-5), new BigDecimal(10)))==0);
+		assertTrue(new BigDecimal(-50).compareTo(MathLib.imul(new BigDecimal(5), new BigDecimal(-10)))==0);
+		assertTrue(new BigDecimal(50).compareTo(MathLib.imul(new BigDecimal(-5), new BigDecimal(-10)))==0);
 		
-		assertEquals(8f, MathLib.imul(8f, 1f), 0.0001f);
-		assertEquals(-8f, MathLib.imul(-8f, 1f), 0.0001f);
-		assertEquals(-8f, MathLib.imul(8f, -1f), 0.0001f);
-		assertEquals(8f, MathLib.imul(-8f, -1f), 0.0001f);
+		assertTrue(new BigDecimal(8).compareTo(MathLib.imul(new BigDecimal(8), new BigDecimal(1)))==0);
+		assertTrue(new BigDecimal(-8).compareTo(MathLib.imul(new BigDecimal(-8), new BigDecimal(1)))==0);
+		assertTrue(new BigDecimal(-8).compareTo(MathLib.imul(new BigDecimal(8), new BigDecimal(-1)))==0);
+		assertTrue(new BigDecimal(8).compareTo(MathLib.imul(new BigDecimal(-8), new BigDecimal(-1)))==0);
 		
-		assertEquals(0f, MathLib.imul(0f, 5f), 0.0001f);
-		assertEquals(0f, MathLib.imul(0f, -5f), 0.0001f);	
+		assertTrue(new BigDecimal(0).compareTo(MathLib.imul(new BigDecimal(0), new BigDecimal(5)))==0);
+		assertTrue(new BigDecimal(0).compareTo(MathLib.imul(new BigDecimal(-0), new BigDecimal(-5)))==0);
 		
-		assertEquals(0f, MathLib.imul(0.4f, 0f), 0.0001f);
-		assertEquals(0f, MathLib.imul(-0.4f, 0f), 0.0001f);
+		assertTrue(new BigDecimal(0).compareTo(MathLib.imul(new BigDecimal("0.4"), new BigDecimal(0)))==0);
+		assertTrue(new BigDecimal(0).compareTo(MathLib.imul(new BigDecimal("-0.4"), new BigDecimal(0)))==0);
 	}
 	
 	/**
@@ -102,26 +105,26 @@ public class MathLibTests {
 	 */
 	@Test
 	public void additionTest(){
-		assertEquals(15f, MathLib.add(10f, 5f), 0.0001f);
-		assertEquals(-5f, MathLib.add(-10f, 5f), 0.0001f);
-		assertEquals(5f, MathLib.add(10f, -5f), 0.0001f);
-		assertEquals(-15f, MathLib.add(-10f, -5f), 0.0001f);
+		assertTrue(new BigDecimal(15).compareTo(MathLib.add(new BigDecimal(10), new BigDecimal(5)))==0);
+		assertTrue(new BigDecimal(-5).compareTo(MathLib.add(new BigDecimal(-10), new BigDecimal(5)))==0);
+		assertTrue(new BigDecimal(5).compareTo(MathLib.add(new BigDecimal(10), new BigDecimal(-5)))==0);
+		assertTrue(new BigDecimal(-15).compareTo(MathLib.add(new BigDecimal(-10), new BigDecimal(-5)))==0);
 		
-		assertEquals(15f, MathLib.add(5f, 10f), 0.0001f);
-		assertEquals(5f, MathLib.add(-5f, 10f), 0.0001f);
-		assertEquals(-5f, MathLib.add(5f, -10f), 0.0001f);
-		assertEquals(-15f, MathLib.add(-5f, -10f), 0.0001f);
+		assertTrue(new BigDecimal(15).compareTo(MathLib.add(new BigDecimal(5), new BigDecimal(10)))==0);
+		assertTrue(new BigDecimal(5).compareTo(MathLib.add(new BigDecimal(-5), new BigDecimal(10)))==0);
+		assertTrue(new BigDecimal(-5).compareTo(MathLib.add(new BigDecimal(5), new BigDecimal(-10)))==0);
+		assertTrue(new BigDecimal(-15).compareTo(MathLib.add(new BigDecimal(-5), new BigDecimal(-10)))==0);
 		
-		assertEquals(9f, MathLib.add(8f, 1f), 0.0001f);
-		assertEquals(-7f, MathLib.add(-8f, 1f), 0.0001f);
-		assertEquals(7f, MathLib.add(8f, -1f), 0.0001f);
-		assertEquals(-9f, MathLib.add(-8f, -1f), 0.0001f);
+		assertTrue(new BigDecimal(9).compareTo(MathLib.add(new BigDecimal(8), new BigDecimal(1)))==0);
+		assertTrue(new BigDecimal(-7).compareTo(MathLib.add(new BigDecimal(-8), new BigDecimal(1)))==0);
+		assertTrue(new BigDecimal(7).compareTo(MathLib.add(new BigDecimal(8), new BigDecimal(-1)))==0);
+		assertTrue(new BigDecimal(-9).compareTo(MathLib.add(new BigDecimal(-8), new BigDecimal(-1)))==0);
 		
-		assertEquals(5f, MathLib.add(0f, 5f), 0.0001f);
-		assertEquals(-5f, MathLib.add(0f, -5f), 0.0001f);	
+		assertTrue(new BigDecimal(5).compareTo(MathLib.add(new BigDecimal(0), new BigDecimal(5)))==0);
+		assertTrue(new BigDecimal(-5).compareTo(MathLib.add(new BigDecimal(0), new BigDecimal(-5)))==0);
 		
-		assertEquals(0.4f, MathLib.add(0.4f, 0f), 0.0001f);
-		assertEquals(-0.4f, MathLib.add(-0.4f, 0f), 0.0001f);
+		assertTrue(new BigDecimal("0.4").compareTo(MathLib.add(new BigDecimal("0.4"), new BigDecimal(0)))==0);
+		assertTrue(new BigDecimal("-0.4").compareTo(MathLib.add(new BigDecimal("-0.4"), new BigDecimal(0)))==0);
 	}
 	
 	/**
@@ -129,26 +132,26 @@ public class MathLibTests {
 	 */
 	@Test
 	public void subtractionTest(){
-		assertEquals(5f, MathLib.sub(10f, 5f), 0.0001f);
-		assertEquals(-15f, MathLib.sub(-10f, 5f), 0.0001f);
-		assertEquals(15f, MathLib.sub(10f, -5f), 0.0001f);
-		assertEquals(-5f, MathLib.sub(-10f, -5f), 0.0001f);
+		assertTrue(new BigDecimal(5).compareTo(MathLib.sub(new BigDecimal(10), new BigDecimal(5)))==0);
+		assertTrue(new BigDecimal(-15).compareTo(MathLib.sub(new BigDecimal(-10), new BigDecimal(5)))==0);
+		assertTrue(new BigDecimal(15).compareTo(MathLib.sub(new BigDecimal(10), new BigDecimal(-5)))==0);
+		assertTrue(new BigDecimal(-5).compareTo(MathLib.sub(new BigDecimal(-10), new BigDecimal(-5)))==0);
 		
-		assertEquals(-5f, MathLib.sub(5f, 10f), 0.0001f);
-		assertEquals(-15f, MathLib.sub(-5f, 10f), 0.0001f);
-		assertEquals(15f, MathLib.sub(5f, -10f), 0.0001f);
-		assertEquals(5f, MathLib.sub(-5f, -10f), 0.0001f);
+		assertTrue(new BigDecimal(-5).compareTo(MathLib.sub(new BigDecimal(5), new BigDecimal(10)))==0);
+		assertTrue(new BigDecimal(-15).compareTo(MathLib.sub(new BigDecimal(-5), new BigDecimal(10)))==0);
+		assertTrue(new BigDecimal(15).compareTo(MathLib.sub(new BigDecimal(5), new BigDecimal(-10)))==0);
+		assertTrue(new BigDecimal(5).compareTo(MathLib.sub(new BigDecimal(-5), new BigDecimal(-10)))==0);
 		
-		assertEquals(7f, MathLib.sub(8f, 1f), 0.0001f);
-		assertEquals(-9f, MathLib.sub(-8f, 1f), 0.0001f);
-		assertEquals(9f, MathLib.sub(8f, -1f), 0.0001f);
-		assertEquals(-7f, MathLib.sub(-8f, -1f), 0.0001f);
+		assertTrue(new BigDecimal(7).compareTo(MathLib.sub(new BigDecimal(8), new BigDecimal(1)))==0);
+		assertTrue(new BigDecimal(-9).compareTo(MathLib.sub(new BigDecimal(-8), new BigDecimal(1)))==0);
+		assertTrue(new BigDecimal(9).compareTo(MathLib.sub(new BigDecimal(8), new BigDecimal(-1)))==0);
+		assertTrue(new BigDecimal(-7).compareTo(MathLib.sub(new BigDecimal(-8), new BigDecimal(-1)))==0);
 		
-		assertEquals(-5f, MathLib.sub(0f, 5f), 0.0001f);
-		assertEquals(5f, MathLib.sub(0f, -5f), 0.0001f);	
+		assertTrue(new BigDecimal(-5).compareTo(MathLib.sub(new BigDecimal(0), new BigDecimal(5)))==0);
+		assertTrue(new BigDecimal(5).compareTo(MathLib.sub(new BigDecimal(0), new BigDecimal(-5)))==0);
 		
-		assertEquals(0.4f, MathLib.sub(0.4f, 0f), 0.0001f);
-		assertEquals(-0.4f, MathLib.sub(-0.4f, 0f), 0.0001f);
+		assertTrue(new BigDecimal("0.4").compareTo(MathLib.sub(new BigDecimal("0.4"), new BigDecimal(0)))==0);
+		assertTrue(new BigDecimal("-0.4").compareTo(MathLib.sub(new BigDecimal("-0.4"), new BigDecimal(0)))==0);
 	}
 
 	/**
@@ -156,12 +159,12 @@ public class MathLibTests {
 	 */
 	@Test
 	public void facTest(){
-		assertEquals(24f, MathLib.fac(4), 0.0001f);
-		assertEquals(120f, MathLib.fac(5), 0.0001f);
+		assertTrue(new BigDecimal(24).compareTo(MathLib.fac(4))==0);
+		assertTrue(new BigDecimal(120).compareTo(MathLib.fac(5))==0);
 		
-		assertEquals(1f, MathLib.fac(0), 0.0001f);
-
-		assertEquals(-1f, MathLib.fac(-4), 0.0001f);
+		assertTrue(new BigDecimal(1).compareTo(MathLib.fac(0))==0);
+		
+		assertTrue(new BigDecimal(-1).compareTo(MathLib.fac(-4))==0);
 
 	}
 	
@@ -170,18 +173,17 @@ public class MathLibTests {
 	 */
 	@Test
 	public void expTest(){
-		assertEquals(4f, MathLib.exp(2,2f), 0.0001f);
-		assertEquals(32f, MathLib.exp(5,2f), 0.0001f);
+		assertTrue(new BigDecimal(4).compareTo(MathLib.exp(2, new BigDecimal(2)))==0);
+		assertTrue(new BigDecimal(32).compareTo(MathLib.exp(5, new BigDecimal(2)))==0);
 		
+		assertTrue(new BigDecimal(1).compareTo(MathLib.exp(0, new BigDecimal(2)))==0);
+		assertTrue(new BigDecimal(0).compareTo(MathLib.exp(2, new BigDecimal(0)))==0);
 		
-		assertEquals(1f, MathLib.exp(0,2f), 0.0001f);
-		assertEquals(0f, MathLib.exp(2,0f), 0.0001f);
+		assertTrue(new BigDecimal("0.25").compareTo(MathLib.exp(2, new BigDecimal("0.5")))==0);
+		assertTrue(new BigDecimal("0.125").compareTo(MathLib.exp(3, new BigDecimal("0.5")))==0);
 		
-		assertEquals(0.25f, MathLib.exp(2,0.5f), 0.0001f);
-		assertEquals(0.125f, MathLib.exp(3,0.5f), 0.0001f);
-
-		assertEquals(0.001f, MathLib.exp(-3,10f), 0.0001f);
-		assertEquals(-0.5f, MathLib.exp(-1,-2f), 0.0001f);
+		assertTrue(new BigDecimal("0.001").compareTo(MathLib.exp(-3, new BigDecimal("10")))==0);
+		assertTrue(new BigDecimal("-0.5").compareTo(MathLib.exp(-1, new BigDecimal("-2")))==0);
 
 	}
 	
@@ -190,13 +192,12 @@ public class MathLibTests {
 	 */
 	@Test
 	public void nRootTest(){
-		assertEquals(2f, MathLib.nRoot(2,4f), 0.0001f);
-		assertEquals(2f, MathLib.nRoot(5,32f), 0.0001f);
+		assertTrue(new BigDecimal(2).compareTo(MathLib.nRoot(2, new BigDecimal(4)))==0);
+		assertTrue(new BigDecimal(2).compareTo(MathLib.nRoot(5, new BigDecimal(32)))==0);
 		
-		assertEquals(0f, MathLib.nRoot(2,0f), 0.0001f);
-
-		assertEquals(0.93309299f, MathLib.nRoot(10,0.5f), 0.0001f);
-
+		assertTrue(new BigDecimal(0).compareTo(MathLib.nRoot(2, new BigDecimal(0)))==0);
+		
+		assertTrue(new BigDecimal("0.9330329915").compareTo(MathLib.nRoot(10, new BigDecimal(0.5)))==0);
 	}
 }
 /*** End of MathLibTests.java file ***/

@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -36,7 +37,7 @@ public class Profiling {
 		in = new Scanner(System.in);
 		
 		File file;
-		ArrayList<Double> numbers = new ArrayList<Double>();
+		ArrayList<BigDecimal> numbers = new ArrayList<BigDecimal>();
 		file = readFileName();
 		readNumbers(file, numbers);
 		for (int i = 0; i < 1000; i++) {
@@ -71,14 +72,14 @@ public class Profiling {
 	 * 
 	 * @author Rengyr
 	 */
-	private void readNumbers(File file, ArrayList<Double> list){
+	private void readNumbers(File file, ArrayList<BigDecimal> list){
 		BufferedReader input = null;
 		try {
 			input = new BufferedReader (new FileReader(file));
 			String line;
 			while ((line = input.readLine())!=null){
 				try {
-					list.add(Double.parseDouble(line));
+					list.add(new BigDecimal(line));
 				} catch (NumberFormatException e) {
 					System.out.println("Found line with non-number string!");
 					profEnd(-1);
@@ -130,12 +131,12 @@ public class Profiling {
 	 * 
 	 * @author AdamKuba
 	 */
-	private double arithmeticMean(ArrayList<Double> num){
-		double sum = 0;
+	private BigDecimal arithmeticMean(ArrayList<BigDecimal> num){
+		BigDecimal sum = new BigDecimal(0);
 		for (int i = 0; i < num.size(); i++) {
 			sum=MathLib.add(sum, num.get(i));
 		}
-		return MathLib.idiv(sum, num.size());
+		return MathLib.idiv(sum, new BigDecimal(num.size()));
 		
 	}
 	
@@ -147,15 +148,15 @@ public class Profiling {
 	 * 
 	 * @author AdamKuba
 	 */
-	private double deviation(ArrayList<Double> num){
-		double sum = 0;
+	private BigDecimal deviation(ArrayList<BigDecimal> num){
+		BigDecimal sum = new BigDecimal("0");
 		for (int i = 0; i < num.size(); i++) {
 			sum=MathLib.add(sum, MathLib.imul(num.get(i), num.get(i)));
 		}
-		double mean = arithmeticMean(num);
-		double foo = MathLib.imul(num.size(), MathLib.imul(mean, mean));
-		double bar = MathLib.sub(sum, foo);
-		double foobar = MathLib.idiv(bar, num.size()-1);
+		BigDecimal mean = arithmeticMean(num);
+		BigDecimal foo = MathLib.imul(new BigDecimal(num.size()), MathLib.imul(mean, mean));
+		BigDecimal bar = MathLib.sub(sum, foo);
+		BigDecimal foobar = MathLib.idiv(bar, new BigDecimal(num.size()-1));
 		return MathLib.nRoot(2, foobar);
 		
 	}
