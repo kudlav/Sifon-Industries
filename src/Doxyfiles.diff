@@ -1,0 +1,241 @@
+@@ choosen @@
+--- a/DoxyfileKosik
++++ b/DoxyfileKudlac
+!!! c/DoxyfileKuba
+    d/DoxyfileMusil
+
+
+@@ Sifon Industries @@
+-PROJECT_NAME           = "Sifon Industries"
++PROJECT_NAME           = "Sifon Industries Calc"
+!PROJECT_NAME           = "Sifon Industries"
+ PROJECT_NAME           = "Sifon Industries"
+
+@@ 1.0 @@
+-PROJECT_NUMBER         =
++PROJECT_NUMBER         = 1.0
+!PROJECT_NUMBER         =
+ PROJECT_NUMBER         = 1.0
+
+@@  @@
+-PROJECT_BRIEF          =
++PROJECT_BRIEF          = "Projekt IVS 2 - týmová spolupráce"
+!PROJECT_BRIEF          =
+ PROJECT_BRIEF          = "Projekt IVS 2 - týmová spolupráce"
+
+@@ ../doc @@
+-OUTPUT_DIRECTORY       = C:\Dropbox\git\Sifon-Industries
++OUTPUT_DIRECTORY       = ..
+!OUTPUT_DIRECTORY       =
+ OUTPUT_DIRECTORY       = ./doc
+
+@@  @@
+-ABBREVIATE_BRIEF       = "The $name class" \
+-                         "The $name widget" \
+-                         "The $name file" \
+-                         is \
+-                         provides \
+-                         specifies \
+-                         contains \
+-                         represents \
+-                         a \
+-                         an \
+-                         the
++ABBREVIATE_BRIEF       =
+!ABBREVIATE_BRIEF       = "The $name class" \
+!                         "The $name widget" \
+!                         "The $name file" \
+!                         is \
+!                         provides \
+!                         specifies \
+!                         contains \
+!                         represents \
+!                         a \
+!                         an \
+!                         the
+ ABBREVIATE_BRIEF       =
+
+@@ NO @@
+-EXTRACT_ALL            = NO
++EXTRACT_ALL            = YES
+!EXTRACT_ALL            = NO
+ EXTRACT_ALL            = YES
+
+@@ NO @@
+-EXTRACT_PRIVATE        = NO
++EXTRACT_PRIVATE        = YES
+!EXTRACT_PRIVATE        = NO
+ EXTRACT_PRIVATE        = YES
+
+@@ NO @@
+-EXTRACT_PACKAGE        = NO
++EXTRACT_PACKAGE        = YES
+!EXTRACT_PACKAGE        = NO
+ EXTRACT_PACKAGE        = YES
+
+@@ NO @@
+-EXTRACT_STATIC         = YES
++EXTRACT_STATIC         = YES
+!EXTRACT_STATIC         = NO
+ EXTRACT_STATIC         = YES
+
+@@ NO @@
+-EXTRACT_LOCAL_METHODS  = NO
++EXTRACT_LOCAL_METHODS  = YES
+!EXTRACT_LOCAL_METHODS  = NO
+ EXTRACT_LOCAL_METHODS  = YES
+
+@@ NO @@
+-EXTRACT_ANON_NSPACES   = NO
++EXTRACT_ANON_NSPACES   = YES
+!EXTRACT_ANON_NSPACES   = NO
+ EXTRACT_ANON_NSPACES   = NO
+
+@@ NO @@
+-SORT_BRIEF_DOCS        = NO
++SORT_BRIEF_DOCS        = YES
+!SORT_BRIEF_DOCS        = NO
+ SORT_BRIEF_DOCS        = NO
+
+@@ NO @@
+-SORT_MEMBERS_CTORS_1ST = NO
++SORT_MEMBERS_CTORS_1ST = YES
+!SORT_MEMBERS_CTORS_1ST = NO
+ SORT_MEMBERS_CTORS_1ST = NO
+
+@@ NO @@
+-WARN_NO_PARAMDOC       = NO
++WARN_NO_PARAMDOC       = YES
+!WARN_NO_PARAMDOC       = NO
+ WARN_NO_PARAMDOC       = YES
+
+@@  @@
+-WARN_LOGFILE           =
++WARN_LOGFILE           =
+!WARN_LOGFILE           =
+ WARN_LOGFILE           = doxy_warnings.log
+
+@@  @@
+-INPUT                  = C:\Dropbox\git\Sifon-Industries\src
++INPUT                  = .
+!INPUT                  =
+ INPUT                  = ./
+
+@@ *.java @@
+-FILE_PATTERNS          = *.c \
+-                         *.cc \
+-                         *.cxx \
+-                         *.cpp \
+-                         *.c++ \
+-                         *.java \
+-                         *.ii \
+-                         *.ixx \
+-                         *.ipp \
+-                         *.i++ \
+-                         *.inl \
+-                         *.idl \
+-                         *.ddl \
+-                         *.odl \
+-                         *.h \
+-                         *.hh \
+-                         *.hxx \
+-                         *.hpp \
+-                         *.h++ \
+-                         *.cs \
+-                         *.d \
+-                         *.php \
+-                         *.php4 \
+-                         *.php5 \
+-                         *.phtml \
+-                         *.inc \
+-                         *.m \
+-                         *.markdown \
+-                         *.md \
+-                         *.mm \
+-                         *.dox \
+-                         *.py \
+-                         *.pyw \
+-                         *.f90 \
+-                         *.f95 \
+-                         *.f03 \
+-                         *.f08 \
+-                         *.f \
+-                         *.for \
+-                         *.tcl \
+-                         *.vhd \
+-                         *.vhdl \
+-                         *.ucf \
+-                         *.qsf
++FILE_PATTERNS          = *.java *.fxml *.css
+!FILE_PATTERNS          = *.java
+ FILE_PATTERNS          = *.java
+
+@@  @@
+-EXAMPLE_PATTERNS       = *
++EXAMPLE_PATTERNS       =
+!EXAMPLE_PATTERNS       = *
+ EXAMPLE_PATTERNS       =
+
+@@ NO @@
+-SOURCE_BROWSER         = NO
++SOURCE_BROWSER         = YES
+!SOURCE_BROWSER         = NO
+ SOURCE_BROWSER         = YES
+
+@@ YES @@
+-STRIP_CODE_COMMENTS    = YES
++STRIP_CODE_COMMENTS    = NO
+!STRIP_CODE_COMMENTS    = YES
+ STRIP_CODE_COMMENTS    = NO
+
+@@ NO @@
+-HTML_TIMESTAMP         = NO
++HTML_TIMESTAMP         = YES
+!HTML_TIMESTAMP         = NO
+ HTML_TIMESTAMP         = YES
+
+@@ NO @@
+-GENERATE_TREEVIEW      = NO
++GENERATE_TREEVIEW      = YES
+!GENERATE_TREEVIEW      = NO
+ GENERATE_TREEVIEW      = YES
+
+@@ YES @@
+-COMPACT_LATEX          = YES
++COMPACT_LATEX          = NO
+!COMPACT_LATEX          = NO
+ COMPACT_LATEX          = NO
+
+@@ YES @@
+-CLASS_DIAGRAMS         = NO
++CLASS_DIAGRAMS         = YES
+!CLASS_DIAGRAMS         = YES
+ CLASS_DIAGRAMS         = YES
+
+@@ NO @@
+-DOT_MULTI_TARGETS      = NO
++DOT_MULTI_TARGETS      = YES
+!DOT_MULTI_TARGETS      = NO
+ DOT_MULTI_TARGETS      = YES
+
+@@ YES @@
+-JAVADOC_AUTOBRIEF      = YES
++JAVADOC_AUTOBRIEF      = YES
+!JAVADOC_AUTOBRIEF      = NO
+ JAVADOC_AUTOBRIEF      = NO
+
+@@ NO @@
+-SEPARATE_MEMBER_PAGES  = YES
++SEPARATE_MEMBER_PAGES  = YES
+!SEPARATE_MEMBER_PAGES  = NO
+ SEPARATE_MEMBER_PAGES  = NO
+
+@@ NO @@
+-CASE_SENSE_NAMES       = NO
++CASE_SENSE_NAMES       = NO
+!CASE_SENSE_NAMES       = NO
+ CASE_SENSE_NAMES       = YES
+
+
+@@ GENERATE_HTML          = NO @@
+@@ GENERATE_LATEX         = YES @@
