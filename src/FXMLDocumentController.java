@@ -19,21 +19,21 @@ import javafx.scene.control.Label;
  */
 public class FXMLDocumentController implements Initializable {
 	private int outputRoundingNumber = 9;
-	
+
 	private HashMap<String, Operation> ops = new HashMap<String, Operation>();
 	private BigDecimal[] numbers = new BigDecimal[2];
 	private int numberPos = 0;
 	private boolean signed = false;
 	private int decimal = 0;
-	
+
 	private Operation selectedOp;
-	
+
 	@FXML
 	private Label display;
 
 	@FXML
 	private Label display1;
-	
+
 	@FXML
 	private Button buttonPoint;
 
@@ -63,7 +63,7 @@ public class FXMLDocumentController implements Initializable {
 
 	@FXML
 	private Button rslt;
-	
+
 	public FXMLDocumentController(){
 		for (int i = 0; i < numbers.length; i++) {
 			numbers[i] = new BigDecimal(0);
@@ -71,7 +71,7 @@ public class FXMLDocumentController implements Initializable {
 		Calc.controller = this;
 	}
 
-	
+
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		ops.put("add", new Operation("add", "+", true, true, true, true, true, add){
@@ -80,25 +80,25 @@ public class FXMLDocumentController implements Initializable {
 			public BigDecimal function() {
 				return MathLib.add(numbers[0],numbers[1]);
 			}
-			
+
 		});
-		
+
 		ops.put("sub", new Operation("sub", "-", true, true, true, true, true, sub){
 
 			@Override
 			public BigDecimal function() {
 				return MathLib.sub(numbers[0],numbers[1]);
 			}
-			
+
 		});
-		
-		ops.put("div", new Operation("div", "÷", true, true, true, true, true, idiv){
+
+		ops.put("div", new Operation("div", "Ã·", true, true, true, true, true, idiv){
 
 			@Override
 			public BigDecimal function() {
 				return MathLib.idiv(numbers[0], numbers[1]);
 			}
-			
+
 			@Override
 			public boolean isLegalNumber(BigDecimal number, int pos) {
 				boolean zero = true;
@@ -106,25 +106,25 @@ public class FXMLDocumentController implements Initializable {
 				return super.isLegalNumber(number, pos) && zero;
 			}
 		});
-		
-		ops.put("mul", new Operation("mul", "×", true, true, true, true, true, imul){
+
+		ops.put("mul", new Operation("mul", "Ã—", true, true, true, true, true, imul){
 
 			@Override
 			public BigDecimal function() {
 				return MathLib.imul(numbers[0], numbers[1]);
 			}
-			
+
 		});
-		
+
 		ops.put("mod", new Operation("mod", "mod", true, true, false, true, false, mod){
 
 			@Override
 			public BigDecimal function() {
 				return MathLib.mod(numbers[0].toBigInteger(), numbers[1].toBigInteger());
 			}
-			
+
 		});
-		
+
 		ops.put("exp", new Operation("exp", "^", true, true, true, true, false, exp){
 
 			@Override
@@ -132,23 +132,23 @@ public class FXMLDocumentController implements Initializable {
 				return MathLib.exp(numbers[1].toBigInteger(), numbers[0]);
 			}
 		});
-		
+
 		ops.put("fac", new Operation("fac", "!", false, false, false, true, true, fac){
 
 			@Override
 			public BigDecimal function() {
 				return MathLib.fac(numbers[0].intValue());
 			}
-			
+
 		});
-		
+
 		ops.put("nroot", new Operation("nroot", "root", true, true, false, true, true, nroot){
 
 			@Override
 			public BigDecimal function() {
 				return MathLib.nRoot(numbers[0].toBigInteger(),numbers[1]);
 			}
-			
+
 			@Override
 			public boolean canBeSecondSigned() {
 				return numbers[0].intValue()%2==1;
@@ -157,7 +157,7 @@ public class FXMLDocumentController implements Initializable {
 		updateDisplay();
 		updateVisibility();
 	}
-	
+
 	@FXML
 	private void handleNumberButton(ActionEvent event) {
 		String number = ((Button)event.getSource()).getText();
@@ -174,8 +174,8 @@ public class FXMLDocumentController implements Initializable {
 		}else{
 			numbers[numberPos] = numbers[numberPos].subtract(num);
 		}
-		
-		
+
+
 		updateDisplay();
 		updateVisibility();
  	}
@@ -184,12 +184,12 @@ public class FXMLDocumentController implements Initializable {
 	private void handleResultButton(ActionEvent event) {
 		doOperation();
 	}
-	
+
 	@FXML
 	private void handlePlusButton(ActionEvent event) {
 		setOperation("add");
 	}
-	
+
 	@FXML
 	private void handleMinusButton(ActionEvent event) {
 		if (numberPos == 0 && numbers[0].doubleValue() == 0) {
@@ -205,7 +205,7 @@ public class FXMLDocumentController implements Initializable {
 		}
 		setOperation("sub");
 	}
-	
+
 	@FXML
 	private void handleMulButton(ActionEvent event) {
 		setOperation("mul");
@@ -270,7 +270,7 @@ public class FXMLDocumentController implements Initializable {
 		updateDisplay();
 		updateVisibility();
 	}
-	
+
 	private void doOperation(){
 		selectedOp.setNumber(0, numbers[0]);
 		selectedOp.setNumber(1, numbers[1]);
@@ -287,7 +287,7 @@ public class FXMLDocumentController implements Initializable {
 		updateDisplay();
 		updateVisibility();
 	}
-	
+
 	public void keyPressed(char key){
 		if(Character.isDigit(key)){
 			handleNumberButton(new ActionEvent(new Button(Character.toString(key)),null));
@@ -325,7 +325,7 @@ public class FXMLDocumentController implements Initializable {
 			break;
 		}
 	}
-	
+
 	private void updateVisibility(){
 		for (Operation op : ops.values()) {
 			op.enable();
@@ -358,14 +358,14 @@ public class FXMLDocumentController implements Initializable {
 				rslt.setDisable(true);
 				for (Operation op : ops.values()) {
 					op.disable();
-				}	
+				}
 			}
 		}
 		if(decimal!=0){
 			buttonPoint.setDisable(true);
 		}
 	}
-	
+
 	private void updateDisplay(){
 		String zeroes = generateZeroes(getTrailingZeroes(numbers[numberPos]));
 		if (getNumberOfDecimalPlaces(numbers[numberPos])==0 && decimal > 0){
@@ -401,7 +401,7 @@ public class FXMLDocumentController implements Initializable {
 			display1.setText(output2.stripTrailingZeros().toEngineeringString()+uppershort+" "+selectedOp.getVisual()+" ");
 		}
 	}
-	
+
 	private String generateZeroes(int num){
 		String zeroes = "";
 		for (int i = 0; i < num; i++) {
@@ -409,7 +409,7 @@ public class FXMLDocumentController implements Initializable {
 		}
 		return zeroes;
 	}
-	
+
 	private void backspace(){
 		if(numbers[numberPos].equals("0")) return;
 		if (decimal == 1){
@@ -426,17 +426,17 @@ public class FXMLDocumentController implements Initializable {
 		updateDisplay();
 		updateVisibility();
 	}
-	
+
 	private int getNumberOfDecimalPlaces(BigDecimal num) {
 	    String string = num.stripTrailingZeros().toPlainString();
 	    int index = string.indexOf(".");
 	    return index < 0 ? 0 : string.length() - index - 1;
 	}
-	
+
 	private int getTrailingZeroes(BigDecimal num){
 		return decimal-getNumberOfDecimalPlaces(num)-1;
 	}
-	
+
 	private abstract class Operation{
 		protected BigDecimal numbers[];
 		protected String name;
@@ -447,7 +447,7 @@ public class FXMLDocumentController implements Initializable {
 		protected boolean SSigned;
 		protected boolean SDecimal;
 		protected Button button;
-		
+
 		public Operation(String name, String visual, boolean binaryOp, boolean firstSigned, boolean firstDecimal, boolean secondSigned, boolean secondDecimal, Button but){
 			if (binaryOp){
 				numbers = new BigDecimal[2];
@@ -464,23 +464,23 @@ public class FXMLDocumentController implements Initializable {
 			this.SDecimal = secondDecimal;
 			this.button = but;
 		}
-		
+
 		abstract public BigDecimal function();
-		
+
 		public String getVisual(){
 			return visual;
 		}
-		
+
 		public void setNumber(int pos, BigDecimal value){
 			if (pos >= 0 && pos < numbers.length){
 				numbers[pos] = value;
 			}
 		}
-		
+
 		public boolean isBinaryOp(){
 			return binaryOp;
 		}
-		
+
 		public boolean isLegalNumber(BigDecimal number, int pos){
 			if (pos == 0){
 				if (!FSigned && number.doubleValue() < 0) return false;
@@ -491,11 +491,11 @@ public class FXMLDocumentController implements Initializable {
 			}
 			return true;
 		}
-		
+
 		public void disable(){
 			button.setDisable(true);
 		}
-		
+
 		public void enable(){
 			button.setDisable(false);
 		}
@@ -503,7 +503,7 @@ public class FXMLDocumentController implements Initializable {
 		public boolean canBeSecondSigned(){
 			return SSigned;
 		}
-		
+
 		public boolean canBeSecondDecimal(){
 			return SDecimal;
 		}
