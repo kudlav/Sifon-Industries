@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -157,7 +158,7 @@ public class Profiling {
 		BigDecimal foo = MathLib.imul(new BigDecimal(num.size()), MathLib.imul(mean, mean));
 		BigDecimal bar = MathLib.sub(sum, foo);
 		BigDecimal foobar = MathLib.idiv(bar, new BigDecimal(num.size()-1));
-		return MathLib.nRoot(2, foobar);
+		return MathLib.nRoot(new BigInteger("2"), foobar);
 		
 	}
 	
