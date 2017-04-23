@@ -1,3 +1,7 @@
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.MathContext;
+import java.math.RoundingMode;
 
 /**
  * Class with static mathematical methods.
@@ -15,11 +19,11 @@ public class MathLib {
 	 * @return the value dividend / divisor
 	 * @throws ArithmeticException if there is division by zero
 	 */
-	public static double idiv(double a, double b) {
-		if (b == 0){
+	public static BigDecimal idiv(BigDecimal a, BigDecimal b) {
+		if (b.doubleValue() == 0){
 			throw new ArithmeticException("Division by zero");
 		}
-		return a / b;
+		return a.divide(b,15, RoundingMode.HALF_UP);
 	}
 
 	/**
@@ -30,8 +34,8 @@ public class MathLib {
 	 * @param b multiplier
 	 * @return result of multiplication
 	 */
-	public static double imul(double a, double b) {
-		return a*b;
+	public static BigDecimal imul(BigDecimal a, BigDecimal b) {
+		return a.multiply(b);
 	}
 
 	/**
@@ -42,8 +46,8 @@ public class MathLib {
 	 * @param b subtrahend (the number being subtracted)
 	 * @return difference (result of subtraction)
 	 */
-	public  static double sub(double a, double b) {
-		return a-b;
+	public static BigDecimal sub(BigDecimal a, BigDecimal b) {
+		return a.subtract(b);
 	}
 	
 	/**
@@ -54,8 +58,8 @@ public class MathLib {
 	 * @param b second summand
 	 * @return a + b
 	 */
-	public  static double add(double a, double b) {
-		return a+b;
+	public static BigDecimal add(BigDecimal a, BigDecimal b) {
+		return a.add(b);
 	}
 
 	/**
@@ -66,25 +70,25 @@ public class MathLib {
 	 * @param a radicand
 	 * @return nth root of the radicand
 	 */
-	public  static double nRoot(int n, double a) {
+	public static BigDecimal nRoot(BigInteger n, BigDecimal a) {
 		boolean signed = false;
-		if (n<0){
-			n = -n;
+		if (n.doubleValue()<0){
+			n = n.negate();
 			signed = true;
 		}
-		if(a<0){
-			return -1;
+		if(signed && a.doubleValue()<0){
+			return new BigDecimal("-1");
 		}
 		double p = 0.00000000001;
-		double prev=a;
-		double next=a/n;
+		BigDecimal prev=a;
+		BigDecimal next=a.divide(new BigDecimal(n),15, RoundingMode.HALF_UP);
 		
-		while(abs(prev-next)>p){
+		while(abs(prev.subtract(next)).doubleValue()>p){
 			prev = next;
-			next = ((n-1.0)*prev+(a/exp(n-1,prev)))/n;
-			
+			next = (new BigDecimal(n.subtract(new BigInteger("1"))).multiply(prev).add(a.divide(exp(n.subtract(new BigInteger("1")),prev),15, RoundingMode.HALF_UP))).divide(new BigDecimal(n),15, RoundingMode.HALF_UP);
 		}
-		if (signed) next = 1/next;
+		if (signed) next = new BigDecimal("1").divide(next,15, RoundingMode.HALF_UP);
+		next = next.round(new MathContext(10));
 		return next;
 	}
 
@@ -97,15 +101,15 @@ public class MathLib {
 	 * @param a base
 	 * @return result of exponentiation (n-th power of a)
 	 */
-	public  static double exp(int n, double a) {
-		double result = 1.0D;
-		int exp = abs(n);
+	public static BigDecimal exp(BigInteger n, BigDecimal a) {
+		BigDecimal result = new BigDecimal("1");
+		BigInteger exp = abs(n);
 
-		for(int i = 0; i < exp; i++) {
-			result = result * a;
+		for(int i = 0; i < exp.doubleValue(); i++) {
+			result = result.multiply(a);
 		}
 
-		return (n < 0) ? 1/result : result;
+		return (n.doubleValue() < 0) ? new BigDecimal("1").divide(result) : result;
 	}
 
 	/**
@@ -115,20 +119,20 @@ public class MathLib {
 	 * @param a number from which is factorial counted
 	 * @return factorial from a, -1 for negative argument
 	 */
-	public  static double fac(int a) {
+	public static BigDecimal fac(int a) {
 		if (a>0){
 			double f = a;
 			while (a>1){
 				f = f * (a-1f);
 				a--;
 			}
-			return f;
+			return new BigDecimal(f);
 		}
 		if(a==0){
-			return 1;
+			return new BigDecimal("1");
 		}
 		else{
-			return -1;
+			return new BigDecimal("-1");
 		}
 	}
 
@@ -140,8 +144,8 @@ public class MathLib {
 	 * @param b the divisor
 	 * @return remainder of dividend and divisor
 	 */
-	public  static int mod(int a, int b) {
-		return a % b;
+	public static BigDecimal mod(BigInteger a, BigInteger b) {
+		return new BigDecimal(a.mod(b));
 	}
 
 	/**
@@ -150,8 +154,8 @@ public class MathLib {
 	 * @param a number
 	 * @return absolute value of argument
 	 */
-	private static double abs(double a){
-		return (a<=0.0D) ? 0.0D - a :a;
+	private static BigDecimal abs(BigDecimal a){
+		return (a.doubleValue()<=0.0D) ? new BigDecimal("0").subtract(a) :a;
 	}
 	/**
 	 * Returns the Absolute value of integer.
@@ -159,8 +163,8 @@ public class MathLib {
 	 * @param a number
 	 * @return number which is always positive
 	 */
-	private  static int abs(int a){
-		return (a<=0) ? 0-a : a;
+	private static BigInteger abs(BigInteger a){
+		return (a.doubleValue()<=0) ? new BigInteger("0").subtract(a) : a;
 	}
 }
 /*** End of MathLib.java file ***/
