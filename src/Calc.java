@@ -7,6 +7,7 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 /**
+ * Main class of GUI.
  *
  * @author kudlav
  * @author AdamKuba
@@ -76,5 +77,5 @@ public class Calc extends Application {
 		launch(args);
 	}
 	
-
 }
+/*** End of Calc.java file ***/
