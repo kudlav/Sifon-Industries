@@ -1,0 +1,2 @@
+Oproti puvodnim planum se projekt zacal zpozdovat behem implementace matematicke knihovny (zprovozneni GUI). Na tuto fazi bychom si priste nechali vice casu. Objevovali se problemy se kterymi nikdo nepocital a nakonec byla vytvorena nova, druha verze.
+Oproti planum nefunguje Makefile. Jedine opravdu odzkousene je generovani dokumentace. Na soubor Makefile nam bohuzel zbyl pouze jeden den a ukazalo se, ze vyrobit funkcni Makefile pod Windows je velky problem, ktery stoji hodne casu a usili.
