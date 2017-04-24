@@ -1,0 +1,4 @@
+xkosik07 95 (Testy, MathLib, Napojení GUI v2, Profilling, Dokumentace kodu)
+xkubaa00 94 (Testy, MathLib, Profilling, Napojení GUI v2, Setup, Makefile)
+xkudla15 94 (Formality a orgranizace, Opravy GUI, MathLib, Napojeni GUI v1, Vyber Doxyfile, Generovani dokumentace, Manual, Debugging)
+xmusil65 93 (GUI, MathLib, Napojeni GUI v1, Manual)
