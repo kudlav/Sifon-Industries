@@ -8,7 +8,7 @@ clean:
 	if exist "../build" (rd /s /q "../build")
 	if exist "../bin" (rd /s /q "../bin")
 test:
-	echo Pro spusteni JUnit testu je potreba pouzit IDE.
+	@echo off | echo "Pro spusteni JUnit testu je potreba pouzit IDE."
 doc: Doxyfile
 	doxygen && cd ../doc/latex/ && make && mv refman.pdf ../../dokumentace.pdf
 	rm -r ../doc
