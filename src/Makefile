@@ -10,8 +10,8 @@ clean:
 test:
 	echo Pro spusteni JUnit testu je potreba pouzit IDE.
 doc: Doxyfile
-	doxygen && cd ../doc/latex/ && make && move refman.pdf ../../dokumentace.pdf
-	del -r ../doc
+	doxygen && cd ../doc/latex/ && make && mv refman.pdf ../../dokumentace.pdf
+	rm -r ../doc
 
 run:
 	if exist "../build" (java -cp "../build" "Calc")
