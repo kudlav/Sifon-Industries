@@ -13,57 +13,77 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 /**
+ * Controller for GUI.
  *
  * @author Rengyr
  * @author AdamKuba
  */
 public class FXMLDocumentController implements Initializable {
+	/** Number of  valid digits to show on display.*/
 	private int outputRoundingNumber = 9;
 
+	/** Map of Operations linked to their name. */
 	private HashMap<String, Operation> ops = new HashMap<String, Operation>();
+	/** Array of operands. */
 	private BigDecimal[] numbers = new BigDecimal[2];
 	private int numberPos = 0;
 	private boolean signed = false;
 	private int decimal = 0;
 
+	/** Selected operation. */
 	private Operation selectedOp;
 
+	/** Label for lower display.  */
 	@FXML
 	private Label display;
 
+	/** Label for upper display. */
 	@FXML
 	private Label display1;
 
+	/** Button for point. */
 	@FXML
 	private Button buttonPoint;
 
+	/** Button for modulo. */
 	@FXML
 	private Button mod;
 
+	/** Button for division. */
 	@FXML
 	private Button idiv;
 
+	/** Button for multiplication. */
 	@FXML
 	private Button imul;
 
+	/** Button for nthRoot. */
 	@FXML
 	private Button nroot;
 
+	/** Button for x^y.  */
 	@FXML
 	private Button exp;
 
+	/** Button for factorial. */
 	@FXML
 	private Button fac;
 
+	/** Button for subtraction. */
 	@FXML
 	private Button sub;
 
+	/** Button for addition. */
 	@FXML
 	private Button add;
 
+	/** Button for result */
 	@FXML
 	private Button rslt;
 
+	/**
+	 * Entry method for controller.
+	 */
 	public FXMLDocumentController(){
 		for (int i = 0; i < numbers.length; i++) {
 			numbers[i] = new BigDecimal(0);
@@ -158,6 +178,12 @@ public class FXMLDocumentController implements Initializable {
 		updateVisibility();
 	}
 
+	
+	/**
+	 * Handler for number buttons.
+	 * 
+	 * @param event ActionEvent for handler
+	 */
 	@FXML
 	private void handleNumberButton(ActionEvent event) {
 		String number = ((Button)event.getSource()).getText();
@@ -180,16 +206,31 @@ public class FXMLDocumentController implements Initializable {
 		updateVisibility();
  	}
 
+	/**
+	 * Handler for result button.
+	 * 
+	 * @param event ActionEvent for handler
+	 */
 	@FXML
 	private void handleResultButton(ActionEvent event) {
 		doOperation();
 	}
 
+	/**
+	 * Handler for addition button.
+	 * 
+	 * @param event ActionEvent for handler
+	 */
 	@FXML
 	private void handlePlusButton(ActionEvent event) {
 		setOperation("add");
 	}
 
+	/**
+	 * Handler for subtraction button.
+	 * 
+	 * @param event ActionEvent for handler
+	 */
 	@FXML
 	private void handleMinusButton(ActionEvent event) {
 		if (numberPos == 0 && numbers[0].doubleValue() == 0) {
@@ -206,36 +247,71 @@ public class FXMLDocumentController implements Initializable {
 		setOperation("sub");
 	}
 
+	/**
+	 * Handler for multiplication button.
+	 * 
+	 * @param event ActionEvent for handler
+	 */
 	@FXML
 	private void handleMulButton(ActionEvent event) {
 		setOperation("mul");
 	}
 
+	/**
+	 * Handler for division button.
+	 * 
+	 * @param event ActionEvent for handler
+	 */
 	@FXML
 	private void handleDivButton(ActionEvent event) {
 		setOperation("div");
 	}
 
+	/**
+	 * Handler for modulo button.
+	 * 
+	 * @param event ActionEvent for handler
+	 */
 	@FXML
 	private void handleModButton(ActionEvent event) {
 		setOperation("mod");
 	}
 
+	/**
+	 * Handler for factorial button.
+	 * 
+	 * @param event ActionEvent for handler
+	 */
 	@FXML
 	private void handleFacButton(ActionEvent event) {
 		setOperation("fac");
 	}
 
+	/**
+	 * Handler for x^y button.
+	 * 
+	 * @param event ActionEvent for handler
+	 */
 	@FXML
 	private void handleExpButton(ActionEvent event) {
 		setOperation("exp");
 	}
 
+	/**
+	 * Handler for nthRoot button.
+	 * 
+	 * @param event ActionEvent for handler
+	 */
 	@FXML
 	private void handleRootButton(ActionEvent event) {
 		setOperation("nroot");
 	}
 
+	/**
+	 * Handler for clear button.
+	 * 
+	 * @param event ActionEvent for handler
+	 */
 	@FXML
 	private void handleClearButton(ActionEvent event) {
 		selectedOp = null;
@@ -248,6 +324,11 @@ public class FXMLDocumentController implements Initializable {
 		updateVisibility();
 	}
 
+	/**
+	 * Handler for point button.
+	 * 
+	 * @param event ActionEvent for handler
+	 */
 	@FXML
 	private void handlePointButton(ActionEvent event) {
 		decimal = 1;
@@ -255,6 +336,11 @@ public class FXMLDocumentController implements Initializable {
 		updateVisibility();
 	}
 
+	/**
+	 * Set operation defined by argument.
+	 * 
+	 * @param name name of the operation
+	 */
 	private void setOperation(String name){
 		if (selectedOp != null){
 			doOperation();
@@ -271,6 +357,9 @@ public class FXMLDocumentController implements Initializable {
 		updateVisibility();
 	}
 
+	/**
+	 * Modify numbers[0] to reflect set operation and update accordingly other variables.
+	 */
 	private void doOperation(){
 		selectedOp.setNumber(0, numbers[0]);
 		selectedOp.setNumber(1, numbers[1]);
@@ -288,6 +377,11 @@ public class FXMLDocumentController implements Initializable {
 		updateVisibility();
 	}
 
+	/**
+	 * Handler for keys.
+	 * 
+	 * @param key char representing key pressed
+	 */
 	public void keyPressed(char key){
 		if(Character.isDigit(key)){
 			handleNumberButton(new ActionEvent(new Button(Character.toString(key)),null));
@@ -326,6 +420,9 @@ public class FXMLDocumentController implements Initializable {
 		}
 	}
 
+	/**
+	 * Change button enable/disable according to selected operation and numbers.
+	 */
 	private void updateVisibility(){
 		for (Operation op : ops.values()) {
 			op.enable();
@@ -366,6 +463,9 @@ public class FXMLDocumentController implements Initializable {
 		}
 	}
 
+	/**
+	 * Update display to reflect operation and numbers.
+	 */
 	private void updateDisplay(){
 		String zeroes = generateZeroes(getTrailingZeroes(numbers[numberPos]));
 		if (getNumberOfDecimalPlaces(numbers[numberPos])==0 && decimal > 0){
@@ -402,6 +502,12 @@ public class FXMLDocumentController implements Initializable {
 		}
 	}
 
+	/**
+	 * Generate string of zeroes.
+	 * 
+	 * @param num number of zeroes
+	 * @return string with zeroes
+	 */
 	private String generateZeroes(int num){
 		String zeroes = "";
 		for (int i = 0; i < num; i++) {
@@ -410,6 +516,9 @@ public class FXMLDocumentController implements Initializable {
 		return zeroes;
 	}
 
+	/**
+	 * Delete last digit of number shown on display.
+	 */
 	private void backspace(){
 		if(numbers[numberPos].equals("0")) return;
 		if (decimal == 1){
@@ -427,16 +536,33 @@ public class FXMLDocumentController implements Initializable {
 		updateVisibility();
 	}
 
+	/**
+	 * Return number of decimal digits.
+	 * 
+	 * @param num number from which get number of decimal digits
+	 * @return number of decimal digits
+	 */
 	private int getNumberOfDecimalPlaces(BigDecimal num) {
 	    String string = num.stripTrailingZeros().toPlainString();
 	    int index = string.indexOf(".");
 	    return index < 0 ? 0 : string.length() - index - 1;
 	}
 
+	/**
+	 * Get number of trailing zeroes in number.
+	 * 
+	 * @param num number from which get number of trailing zeroes
+	 * @return number of trailing zeroes
+	 */
 	private int getTrailingZeroes(BigDecimal num){
 		return decimal-getNumberOfDecimalPlaces(num)-1;
 	}
 
+	/**
+	 * Class for operation that hold which numbers are permitted and help managing button availability.
+	 * 
+	 * @author Rengyr
+	 */
 	private abstract class Operation{
 		protected BigDecimal numbers[];
 		protected String name;
@@ -448,6 +574,18 @@ public class FXMLDocumentController implements Initializable {
 		protected boolean SDecimal;
 		protected Button button;
 
+		/**
+		 * Constructor of Operation.
+		 * 
+		 * @param name name of operation
+		 * @param visual visual representation of operation
+		 * @param binaryOp is operation binary, unary for false
+		 * @param firstSigned can be first operand signed number
+		 * @param firstDecimal can be first operand decimal number
+		 * @param secondSigned can be second operand signed number
+		 * @param secondDecimal can be second operand decimal number
+		 * @param but button that is linked to the operation
+		 */
 		public Operation(String name, String visual, boolean binaryOp, boolean firstSigned, boolean firstDecimal, boolean secondSigned, boolean secondDecimal, Button but){
 			if (binaryOp){
 				numbers = new BigDecimal[2];
@@ -465,22 +603,50 @@ public class FXMLDocumentController implements Initializable {
 			this.button = but;
 		}
 
+		/**
+		 * Method that calculate operation itself.
+		 * 
+		 * @return result of operation
+		 */
 		abstract public BigDecimal function();
 
+		/**
+		 * Get visual representation of operation.
+		 * 
+		 * @return string that represents operation
+		 */
 		public String getVisual(){
 			return visual;
 		}
 
+		/**
+		 * Set number on place specified by arguments.
+		 * 
+		 * @param pos position to which set number (0 or 1)
+		 * @param value number which should be set
+		 */
 		public void setNumber(int pos, BigDecimal value){
 			if (pos >= 0 && pos < numbers.length){
 				numbers[pos] = value;
 			}
 		}
 
+		/**
+		 * Is it binary operation.
+		 * 
+		 * @return true if operation is binary operation
+		 */
 		public boolean isBinaryOp(){
 			return binaryOp;
 		}
 
+		/**
+		 * Check if number is legal for operation.
+		 * 
+		 * @param number number to test
+		 * @param pos which operand is number
+		 * @return true of operation is legal
+		 */
 		public boolean isLegalNumber(BigDecimal number, int pos){
 			if (pos == 0){
 				if (!FSigned && number.doubleValue() < 0) return false;
@@ -492,20 +658,35 @@ public class FXMLDocumentController implements Initializable {
 			return true;
 		}
 
+		/**
+		 * Disable button associated to operation.
+		 */
 		public void disable(){
 			button.setDisable(true);
 		}
 
+		/**
+		 * Enable button associated to operation.
+		 */
 		public void enable(){
 			button.setDisable(false);
 		}
 
+		/**
+		 * Can be second operand decimal number
+		 * @return true if second operand can be decimal number
+		 */
 		public boolean canBeSecondSigned(){
 			return SSigned;
 		}
 
+		/**
+		 * Can be second operand signed number
+		 * @return true if second operand can be signed number
+		 */
 		public boolean canBeSecondDecimal(){
 			return SDecimal;
 		}
 	}
 }
+/*** End of FXMLDocumentController.java file ***/

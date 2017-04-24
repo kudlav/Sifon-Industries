@@ -20,7 +20,7 @@ public class Profiling {
 	 * Main method.
 	 * <p>
 	 * Make file named "test" with 100 random numbers and create {@link Profiling} class.
-	 * @param args
+	 * @param args arguments for main
 	 */
 	public static void main(String[] args) {
 		generateFile("test",100);

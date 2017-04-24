@@ -14,7 +14,7 @@ import org.junit.Test;
 public class MathLibTests {
 	
 	/**
-	 * Junit tests for {@link MathLib#idiv(double, double)} method.
+	 * Junit tests for {@link MathLib#idiv(BigDecimal, BigDecimal)} method.
 	 */
 	@Test
 	public void divideTest(){
@@ -39,7 +39,7 @@ public class MathLibTests {
 	}
 	
 	/**
-	 * Junit tests for zero division in {@link MathLib#idiv(double, double)} method.
+	 * Junit tests for zero division in {@link MathLib#idiv(BigDecimal, BigDecimal)} method.
 	 */
 	@Test
 	public void zeroDivisionTest(){
@@ -66,7 +66,7 @@ public class MathLibTests {
 	}
 	
 	/**
-	 * Junit tests for {@link MathLib#mod(int, int)} method.
+	 * Junit tests for {@link MathLib#mod(BigInteger, BigInteger)} method.
 	 */
 	@Test
 	public void modTest(){
@@ -75,7 +75,7 @@ public class MathLibTests {
 	}
 	
 	/**
-	 * Junit tests for {@link MathLib#imul(double, double)} method.
+	 * Junit tests for {@link MathLib#imul(BigDecimal, BigDecimal)} method.
 	 */
 	@Test
 	public void multiplicationTest(){
@@ -102,7 +102,7 @@ public class MathLibTests {
 	}
 	
 	/**
-	 * Junit tests for {@link MathLib#add(double, double)} method.
+	 * Junit tests for {@link MathLib#add(BigDecimal, BigDecimal)} method.
 	 */
 	@Test
 	public void additionTest(){
@@ -129,7 +129,7 @@ public class MathLibTests {
 	}
 	
 	/**
-	 * Junit tests for {@link MathLib#sub(double, double)} method.
+	 * Junit tests for {@link MathLib#sub(BigDecimal, BigDecimal)} method.
 	 */
 	@Test
 	public void subtractionTest(){
@@ -170,7 +170,7 @@ public class MathLibTests {
 	}
 	
 	/**
-	 * Junit tests for {@link MathLib#exp(int, double)} method.
+	 * Junit tests for {@link MathLib#exp(BigInteger, BigDecimal)} method.
 	 */
 	@Test
 	public void expTest(){
@@ -189,7 +189,7 @@ public class MathLibTests {
 	}
 	
 	/**
-	 * Junit tests for {@link MathLib#nRoot(int, double)} method.
+	 * Junit tests for {@link MathLib#nRoot(BigInteger, BigDecimal)} method.
 	 */
 	@Test
 	public void nRootTest(){
